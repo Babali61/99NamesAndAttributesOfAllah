@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nombres et Noms d'Allah (1-99)</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        .nombres-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .nombre-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: #fafafa;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .nombre-item:hover {
+            border-color: #3498db;
+            background-color: #ecf0f1;
+        }
+        .item-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .nom-arabe {
+            font-family: 'Amiri', 'Traditional Arabic', serif;
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        .numero {
+            font-weight: bold;
+            font-size: 18px;
+            color: #2c3e50;
+            margin-right: 15px;
+            min-width: 30px;
+        }
+        .symbole {
+            font-size: 20px;
+            margin-right: 15px;
+        }
+        .espace-nom {
+            flex: 1;
+            padding: 8px;
+            border: 1px dashed #bdc3c7;
+            border-radius: 4px;
+            background-color: white;
+            color: #7f8c8d;
+            font-style: italic;
+            width: 90%;
+        }
+        .espace-nom:focus {
+            outline: none;
+            border-color: #3498db;
+            background-color: #f8f9fa;
+        }
+        .instructions {
+            background-color: #e8f4fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+        }
+        .instructions h3 {
+            margin-top: 0;
+            color: #2980b9;
+        }
+        .instructions ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .instructions li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📿 Asma al Husna - Les 99 Noms d'Allah 📿</h1>
+        
+        <div class="instructions">
+            <h3>Instructions :</h3>
+            <ul>
+                <li><strong>☝️</strong> : Nombre 1 (cliquez pour ajouter le nom d'Allah)</li>
+                <li><strong>🤔</strong> : Nombres impairs (cliquez pour ajouter le nom d'Allah)</li>
+                <li><strong>Nombres pairs</strong> : Cliquez pour ajouter le nom d'Allah</li>
+                <li>Les 99 noms d'Allah (Asma al Husna) sont déjà pré-remplis avec leurs attributs</li>
+                <li>Vous pouvez modifier ou personnaliser les noms selon vos préférences</li>
+            </ul>
+            <div style="text-align: center; margin-top: 15px;">
+                <a href="recherche_allah.html" style="display: inline-block; padding: 10px 20px; background-color: #3498db; color: white; text-decoration: none; border-radius: 5px; transition: all 0.3s ease;">
+                    🔍 Rechercher un nom d'Allah
+                </a>
+            </div>
+        </div>
+
+        <div class="nombres-grid" id="nombresContainer">
+            <!-- Les nombres seront générés ici par JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        function traiterNombres(min, max) {
+            const resultat = [];
+            const symboleImpair = "🤔";
+            const symboleUn = "☝️";
+
+            for (let nombre = min; nombre <= max; nombre++) {
+                // Premier cas : le nombre est-il exactement 1 ?
+                if (nombre === 1) {
+                    resultat.push({ nombre: nombre, symbole: symboleUn });
+                } 
+                // Deuxième cas : sinon, est-ce un autre nombre pair ?
+                else if (nombre % 2 === 0) {
+                    resultat.push({ nombre: nombre, symbole: nombre });
+                } 
+                // Dernier cas : c'est un nombre impair différent de 1
+                else {
+                    resultat.push({ nombre: nombre, symbole: symboleImpair });
+                }
+            }
+
+            return resultat;
+        }
+
+        // Base de données des emojis pour les noms d'Allah
+        const emojisAllah = {
+            1: "☪️", 2: "🤲", 3: "💝", 4: "👑", 5: "✨", 6: "🕊️", 7: "🛡️", 8: "👁️", 9: "💪", 10: "⚡",
+            11: "🌟", 12: "🌍", 13: "🎨", 14: "🎭", 15: "🙏", 16: "🔥", 17: "🎁", 18: "🍞", 19: "🔓", 20: "🧠",
+            21: "✋", 22: "🤲", 23: "⬇️", 24: "⬆️", 25: "🏆", 26: "😔", 27: "👂", 28: "👁️", 29: "⚖️", 30: "⚖️",
+            31: "🕊️", 32: "🔍", 33: "😌", 34: "🌌", 35: "💚", 36: "🙏", 37: "☁️", 38: "🏔️", 39: "🛡️", 40: "🍎",
+            41: "📊", 42: "👑", 43: "💎", 44: "👀", 45: "📞", 46: "🌍", 47: "🧙‍♂️", 48: "💖", 49: "⭐", 50: "🌅",
+            51: "👁️", 52: "✅", 53: "🤝", 54: "💪", 55: "🪨", 56: "🤗", 57: "👏", 58: "🔢", 59: "🎬", 60: "🔄",
+            61: "🌱", 62: "🍂", 63: "❤️", 64: "🔄", 65: "🔍", 66: "👑", 67: "1️⃣", 68: "☝️", 69: "♾️", 70: "💪",
+            71: "⚡", 72: "➡️", 73: "⬅️", 74: "1️⃣", 75: "🔚", 76: "👁️", 77: "🕳️", 78: "👑", 79: "☁️", 80: "😊",
+            81: "🔄", 82: "⚔️", 83: "🤝", 84: "💝", 85: "👑", 86: "🌟", 87: "⚖️", 88: "🤝", 89: "💰", 90: "💎",
+            91: "🛡️", 92: "⚠️", 93: "✅", 94: "💡", 95: "🧭", 96: "🎨", 97: "♾️", 98: "👑", 99: "🧭"
+        };
+
+        // Base de données des noms d'Allah (Asma al Husna)
+        const nomsAllahComplets = {
+            1: "Allah", 2: "Ar-Rahman", 3: "Ar-Rahim", 4: "Al-Malik", 5: "Al-Quddus", 6: "As-Salam", 7: "Al-Mu'min", 8: "Al-Muhaymin", 9: "Al-'Aziz", 10: "Al-Jabbar",
+            11: "Al-Mutakabbir", 12: "Al-Khaaliq", 13: "Al-Baari'", 14: "Al-Musawwir", 15: "Al-Ghaffaar", 16: "Al-Qahhaar", 17: "Al-Wahhab", 18: "Ar-Razzaq", 19: "Al-Fattah", 20: "Al-'Alim",
+            21: "Al-Qaabid", 22: "Al-Baasit", 23: "Al-Khaafid", 24: "Ar-Raafi'", 25: "Al-Mu'izz", 26: "Al-Mudhill", 27: "As-Sami'", 28: "Al-Basir", 29: "Al-Hakam", 30: "Al-'Adl",
+            31: "Al-Latif", 32: "Al-Khabir", 33: "Al-Halim", 34: "Al-'Adheem", 35: "Al-Ghafoor", 36: "Ash-Shakoor", 37: "Al-'Ali", 38: "Al-Kabir", 39: "Al-Hafidh", 40: "Al-Muqit",
+            41: "Al-Hasib", 42: "Aj-Jalil", 43: "Al-Karim", 44: "Ar-Raqib", 45: "Al-Mujib", 46: "Al-Waasi'", 47: "Al-Hakim", 48: "Al-Waduud", 49: "Al-Majeed", 50: "Al-Ba'ith",
+            51: "Ash-Shaheed", 52: "Al-Haqq", 53: "Al-Wakeel", 54: "Al-Qawiyy", 55: "Al-Mateen", 56: "Al-Wa-liyy", 57: "Al-Hameed", 58: "Al-Muhsee", 59: "Al-Mubdi'", 60: "Al-Mu'eed",
+            61: "Al-Muhyi", 62: "Al-Mumeet", 63: "Al-Hayy", 64: "Al-Qay-yoom", 65: "Al-Waajid", 66: "Al-Maajid", 67: "Al-Waahid", 68: "As-Sa-mad", 69: "Al-Qaadir", 70: "Al-Muqtadir",
+            71: "Al-Muqad-dim", 72: "Al-Mu'akh-khir", 73: "Al-'Aw-wal", 74: "Al-'Aakhir", 75: "Az-Zhaahir", 76: "Al-Baatin", 77: "Al-Waali", 78: "Al-Muta 'aali", 79: "Al-Barr",
+            80: "At-Taw-waab", 81: "Al-Mun-taqim", 82: "Al-'A-fuww", 83: "Ar-Ra'oof", 84: "Maalikul Mulk", 85: "Dhul Jalaali wal Ikraam", 86: "Al-Muqsit", 87: "Al-Jaami'", 88: "Al-Gha-niyy", 89: "Al-Mughnee",
+            90: "Al-Maani'", 91: "Ad-Daarr", 92: "An-Naafi'", 93: "An-Noor", 94: "Al-Haadi", 95: "Al-Badee'", 96: "Al-Baaqi", 97: "Al-Waarith", 98: "Ar-Rasheed", 99: "As-Sa-boor"
+        };
+        const nomsAllahArabes = {
+            1: "اللَّهُ", 2: "الرَّحْمَٰنُ", 3: "الرَّحِيمُ", 4: "الْمَلِكُ", 5: "الْقُدُّوسُ", 6: "السَّلَامُ", 7: "الْمُؤْمِنُ", 8: "الْمُهَيْمِنُ", 9: "الْعَزِيزُ", 10: "الْجَبَّارُ",
+            11: "الْمُتَكَبِّرُ", 12: "الْخَالِقُ", 13: "الْبَارِئُ", 14: "الْمُصَوِّرُ", 15: "الْغَفَّارُ", 16: "الْقَهَّارُ", 17: "الْوَهَّابُ", 18: "الرَّزَّاقُ", 19: "الْفَتَّاحُ", 20: "الْعَلِيمُ",
+            21: "الْقَابِضُ", 22: "الْبَاسِطُ", 23: "الْخَافِضُ", 24: "الرَّافِعُ", 25: "الْمُعِزُّ", 26: "الْمُذِلُّ", 27: "السَّمِيعُ", 28: "الْبَصِيرُ", 29: "الْحَكَمُ", 30: "الْعَدْلُ",
+            31: "اللَّطِيفُ", 32: "الْخَبِيرُ", 33: "الْحَلِيمُ", 34: "الْعَظِيمُ", 35: "الْغَفُورُ", 36: "الشَّكُورُ", 37: "الْعَلِيُّ", 38: "الْكَبِيرُ", 39: "الْحَفِيظُ", 40: "الْمُقِيتُ",
+            41: "الْحَسِيبُ", 42: "الْجَلِيلُ", 43: "الْكَرِيمُ", 44: "الرَّقِيبُ", 45: "الْمُجِيبُ", 46: "الْوَاسِعُ", 47: "الْحَكِيمُ", 48: "الْوَدُودُ", 49: "الْمَجِيدُ", 50: "الْبَاعِثُ",
+            51: "الشَّهِيدُ", 52: "الْحَقُّ", 53: "الْوَكِيلُ", 54: "الْقَوِيُّ", 55: "الْمَتِينُ", 56: "الْوَلِيُّ", 57: "الْحَمِيدُ", 58: "الْمُحْصِي", 59: "الْمُبْدِئُ", 60: "الْمُعِيدُ",
+            61: "الْمُحْيِي", 62: "الْمُمِيتُ", 63: "الْحَيُّ", 64: "الْقَيُّومُ", 65: "الْوَاجِدُ", 66: "الْمَاجِدُ", 67: "الْوَاحِدُ", 68: "الصَّمَدُ", 69: "الْقَادِرُ", 70: "الْمُقْتَدِرُ",
+            71: "الْمُقَدِّمُ", 72: "الْمُؤَخِّرُ", 73: "الْأَوَّلُ", 74: "الْآخِرُ", 75: "الظَّاهِرُ", 76: "الْبَاطِنُ", 77: "الْوَالِي", 78: "الْمُتَعَالِي", 79: "الْبَرُّ", 80: "التَّوَّابُ",
+            81: "الْمُنْتَقِمُ", 82: "الْعَفُوُّ", 83: "الرَّءُوفُ", 84: "مَالِكُ الْمُلْكِ", 85: "ذُو الْجَلَالِ وَالْإِكْرَامِ", 86: "الْمُقْسِطُ", 87: "الْجَامِعُ", 88: "الْغَنِيُّ", 89: "الْمُغْنِي",
+            90: "الْمَانِعُ", 91: "الضَّارُّ", 92: "النَّافِعُ", 93: "النُّورُ", 94: "الْهَادِي", 95: "الْبَدِيعُ", 96: "الْبَاقِي", 97: "الْوَارِثُ", 98: "الرَّشِيدُ", 99: "الصَّبُورُ"
+        };
+
+        function afficherNombres() {
+            const nombres = traiterNombres(1, 99);
+            const container = document.getElementById('nombresContainer');
+            
+            nombres.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'nombre-item';
+                
+                const emoji = emojisAllah[item.nombre] || "📿";
+                const nomComplet = nomsAllahComplets[item.nombre] || "";
+                const nomArabe = nomsAllahArabes[item.nombre] || "";
+                
+                div.innerHTML = `
+                    <div class="nom-arabe" dir="rtl">${nomArabe}</div>
+                    <div class="item-header">
+                        <div class="numero">${item.nombre}</div>
+                        <div class="symbole">${item.symbole}</div>
+                        <div style="font-size: 1.5em;">${emoji}</div>
+                    </div>
+                    <input type="text" class="espace-nom" placeholder="Entrez le nom d'Allah ici..." 
+                           data-nombre="${item.nombre}" value="${nomComplet}">
+                `;
+                
+                container.appendChild(div);
+            });
+        }
+
+        // Initialiser l'affichage
+        document.addEventListener('DOMContentLoaded', afficherNombres);
+
+        // Sauvegarder automatiquement les entrées
+        document.addEventListener('input', function(e) {
+            if (e.target.classList.contains('espace-nom')) {
+                const nombre = e.target.dataset.nombre;
+                const valeur = e.target.value;
+                localStorage.setItem(`allah_${nombre}`, valeur);
+            }
+        });
+
+        // Charger les valeurs sauvegardées
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                const inputs = document.querySelectorAll('.espace-nom');
+                inputs.forEach(input => {
+                    const nombre = input.dataset.nombre;
+                    const valeurSauvegardee = localStorage.getItem(`allah_${nombre}`);
+                    if (valeurSauvegardee) {
+                        input.value = valeurSauvegardee;
+                    }
+                });
+            }, 100);
+        });
+    </script>
+</body>
+</html> 
