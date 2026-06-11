@@ -3,244 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nombres et Noms d'Allah (1-99)</title>
+    <meta name="theme-color" content="#121828">
+    <title>Asma al Husna - Les 99 Noms d'Allah</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-color: #121828;
+            --container-bg: #ffffff;
+            --primary-text: #2c3e50;
+            --secondary-text: #7f8c8d;
+            --accent-color: #d4af37;
+            --accent-hover: #e5c160;
+            --arabic-font: 'Amiri', 'Traditional Arabic', serif;
+            --latin-font: 'Poppins', sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+
         body {
-            font-family: 'Arial', sans-serif;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
+            font-family: var(--latin-font);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 40px 20px;
+            min-height: 100vh;
         }
+
         .container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: var(--container-bg);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            max-width: 1100px;
+            margin: 0 auto;
         }
+
         h1 {
             text-align: center;
-            color: #2c3e50;
+            font-weight: 600;
+            color: var(--primary-text);
+            margin: 0 0 8px;
+            font-size: 1.9em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--secondary-text);
+            font-size: 0.95em;
+            font-weight: 300;
+            margin: 0 0 25px;
+        }
+
+        .toolbar {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
             margin-bottom: 30px;
         }
+
+        .filter-input {
+            flex: 1;
+            min-width: 220px;
+            max-width: 450px;
+            padding: 12px 18px;
+            font-size: 16px;
+            border: 2px solid #ced4da;
+            border-radius: 12px;
+            outline: none;
+            transition: all 0.3s ease;
+            background-color: #f8f9fa;
+            font-family: var(--latin-font);
+        }
+
+        .filter-input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+            background-color: #fff;
+        }
+
+        .nav-btn {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #f1f3f4;
+            color: var(--secondary-text);
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.9em;
+            white-space: nowrap;
+        }
+
+        .nav-btn:hover {
+            background-color: #e9ecef;
+            transform: translateY(-2px);
+        }
+
         .nombres-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
             gap: 15px;
-            margin-top: 20px;
         }
+
         .nombre-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 10px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            background-color: #fafafa;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-        .nombre-item:hover {
-            border-color: #3498db;
-            background-color: #ecf0f1;
-        }
-        .item-header {
-            display: flex;
-            align-items: center;
             justify-content: center;
-            width: 100%;
-            margin-bottom: 10px;
+            padding: 18px 12px;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            background-color: #fafafa;
+            transition: all 0.25s ease;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
         }
-        .nom-arabe {
-            font-family: 'Amiri', 'Traditional Arabic', serif;
-            font-size: 1.8em;
-            color: #2c3e50;
-            margin-bottom: 5px;
+
+        .nombre-item:hover {
+            border-color: var(--accent-color);
+            background-color: #fffdf5;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
         }
+
         .numero {
-            font-weight: bold;
-            font-size: 18px;
-            color: #2c3e50;
-            margin-right: 15px;
-            min-width: 30px;
+            font-weight: 600;
+            font-size: 0.8em;
+            color: var(--accent-color);
+            letter-spacing: 1px;
+            margin-bottom: 4px;
         }
-        .symbole {
-            font-size: 20px;
-            margin-right: 15px;
+
+        .nom-arabe {
+            font-family: var(--arabic-font);
+            font-weight: 700;
+            font-size: 1.9em;
+            color: var(--primary-text);
+            line-height: 1.5;
         }
-        .espace-nom {
-            flex: 1;
-            padding: 8px;
-            border: 1px dashed #bdc3c7;
-            border-radius: 4px;
-            background-color: white;
-            color: #7f8c8d;
-            font-style: italic;
-            width: 90%;
+
+        .nom-translit {
+            font-weight: 600;
+            color: var(--primary-text);
+            margin-top: 2px;
         }
-        .espace-nom:focus {
-            outline: none;
-            border-color: #3498db;
-            background-color: #f8f9fa;
+
+        .attribut {
+            font-size: 0.85em;
+            font-weight: 300;
+            color: var(--secondary-text);
+            margin-top: 2px;
         }
-        .instructions {
-            background-color: #e8f4fd;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border-left: 4px solid #3498db;
-        }
-        .instructions h3 {
-            margin-top: 0;
-            color: #2980b9;
-        }
-        .instructions ul {
-            margin: 10px 0;
-            padding-left: 20px;
-        }
-        .instructions li {
-            margin: 5px 0;
+
+        .aucun-resultat {
+            text-align: center;
+            color: var(--secondary-text);
+            padding: 30px;
+            display: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>📿 Asma al Husna - Les 99 Noms d'Allah 📿</h1>
-        
-        <div class="instructions">
-            <h3>Instructions :</h3>
-            <ul>
-                <li>Les 99 noms d'Allah (Asma al Husna) sont déjà pré-remplis avec leurs attributs</li>
-                <li>Vous pouvez modifier ou personnaliser les noms selon vos préférences en respectant les voyelles</li>
-            </ul>
-            <div style="text-align: center; margin-top: 15px;">
-                <a href="index.html" style="display: inline-block; padding: 10px 20px; background-color: #3498db; color: white; text-decoration: none; border-radius: 5px; transition: all 0.3s ease;">
-                    🔍 Rechercher un nom d'Allah
-                </a>
-            </div>
+        <h1>Asma al Husna</h1>
+        <p class="subtitle">Les 99 Noms d'Allah — cliquez sur un nom pour le voir en détail</p>
+
+        <div class="toolbar">
+            <input type="text" id="filterInput" class="filter-input"
+                   placeholder="Filtrer par numéro, nom ou attribut…"
+                   autocomplete="off" aria-label="Filtrer les noms">
+            <a href="index.html" class="nav-btn">Recherche détaillée</a>
+            <a href="quiz.html" class="nav-btn">Mode mémorisation</a>
         </div>
 
-        <div class="nombres-grid" id="nombresContainer">
-            <!-- Les nombres seront générés ici par JavaScript -->
-        </div>
+        <div class="nombres-grid" id="nombresContainer"></div>
+        <p id="aucunResultat" class="aucun-resultat">Aucun nom ne correspond à votre recherche.</p>
     </div>
 
+    <script src="noms.js"></script>
     <script>
-        function traiterNombres(min, max) {
-            const resultat = [];
-            const symboleImpair = "🤔";
-            const symboleUn = "☝️";
-
-            for (let nombre = min; nombre <= max; nombre++) {
-                // Premier cas : le nombre est-il exactement 1 ?
-                if (nombre === 1) {
-                    resultat.push({ nombre: nombre, symbole: symboleUn });
-                } 
-                // Deuxième cas : sinon, est-ce un autre nombre pair ?
-                else if (nombre % 2 === 0) {
-                    resultat.push({ nombre: nombre, symbole: nombre });
-                } 
-                // Dernier cas : c'est un nombre impair différent de 1
-                else {
-                    resultat.push({ nombre: nombre, symbole: symboleImpair });
-                }
-            }
-
-            return resultat;
+        // Normalise le texte pour un filtre tolérant (accents, apostrophes, tirets)
+        function normaliser(texte) {
+            return texte.toLowerCase()
+                .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                .replace(/['’\-\s]/g, '');
         }
 
-        // Base de données des emojis pour les noms d'Allah
-        const emojisAllah = {
-            1: "☪️", 2: "🤲", 3: "💝", 4: "👑", 5: "✨", 6: "🕊️", 7: "🛡️", 8: "👁️", 9: "💪", 10: "⚡",
-            11: "🌟", 12: "🌍", 13: "🎨", 14: "🎭", 15: "🙏", 16: "🔥", 17: "🎁", 18: "🍞", 19: "🔓", 20: "🧠",
-            21: "✋", 22: "🤲", 23: "⬇️", 24: "⬆️", 25: "🏆", 26: "😔", 27: "👂", 28: "👁️", 29: "⚖️", 30: "⚖️",
-            31: "🕊️", 32: "🔍", 33: "😌", 34: "🌌", 35: "💚", 36: "🙏", 37: "☁️", 38: "🏔️", 39: "🛡️", 40: "🍎",
-            41: "📊", 42: "👑", 43: "💎", 44: "👀", 45: "📞", 46: "🌍", 47: "🧙‍♂️", 48: "💖", 49: "⭐", 50: "🌅",
-            51: "👁️", 52: "✅", 53: "🤝", 54: "💪", 55: "🪨", 56: "🤗", 57: "👏", 58: "🔢", 59: "🎬", 60: "🔄",
-            61: "🌱", 62: "🍂", 63: "❤️", 64: "🔄", 65: "🔍", 66: "👑", 67: "1️⃣", 68: "☝️", 69: "♾️", 70: "💪",
-            71: "⚡", 72: "➡️", 73: "⬅️", 74: "1️⃣", 75: "🔚", 76: "👁️", 77: "🕳️", 78: "👑", 79: "☁️", 80: "😊",
-            81: "🔄", 82: "⚔️", 83: "🤝", 84: "💝", 85: "👑", 86: "🌟", 87: "⚖️", 88: "🤝", 89: "💰", 90: "💎",
-            91: "🛡️", 92: "⚠️", 93: "✅", 94: "💡", 95: "🧭", 96: "🎨", 97: "♾️", 98: "👑", 99: "🧭"
-        };
-
-        // Base de données des noms d'Allah (Asma al Husna)
-        const nomsAllahComplets = {
-            1: "Allah", 2: "Ar-Rahman", 3: "Ar-Rahim", 4: "Al-Malik", 5: "Al-Quddus", 6: "As-Salam", 7: "Al-Mu'min", 8: "Al-Muhaymin", 9: "Al-'Aziz", 10: "Al-Jabbar",
-            11: "Al-Mutakabbir", 12: "Al-Khaaliq", 13: "Al-Baari'", 14: "Al-Musawwir", 15: "Al-Ghaffaar", 16: "Al-Qahhaar", 17: "Al-Wahhab", 18: "Ar-Razzaq", 19: "Al-Fattah", 20: "Al-'Alim",
-            21: "Al-Qaabid", 22: "Al-Baasit", 23: "Al-Khaafid", 24: "Ar-Raafi'", 25: "Al-Mu'izz", 26: "Al-Mudhill", 27: "As-Sami'", 28: "Al-Basir", 29: "Al-Hakam", 30: "Al-'Adl",
-            31: "Al-Latif", 32: "Al-Khabir", 33: "Al-Halim", 34: "Al-'Adheem", 35: "Al-Ghafoor", 36: "Ash-Shakoor", 37: "Al-'Ali", 38: "Al-Kabir", 39: "Al-Hafidh", 40: "Al-Muqit",
-            41: "Al-Hasib", 42: "Aj-Jalil", 43: "Al-Karim", 44: "Ar-Raqib", 45: "Al-Mujib", 46: "Al-Waasi'", 47: "Al-Hakim", 48: "Al-Waduud", 49: "Al-Majeed", 50: "Al-Ba'ith",
-            51: "Ash-Shaheed", 52: "Al-Haqq", 53: "Al-Wakeel", 54: "Al-Qawiyy", 55: "Al-Mateen", 56: "Al-Wa-liyy", 57: "Al-Hameed", 58: "Al-Muhsee", 59: "Al-Mubdi'", 60: "Al-Mu'eed",
-            61: "Al-Muhyi", 62: "Al-Mumeet", 63: "Al-Hayy", 64: "Al-Qay-yoom", 65: "Al-Waajid", 66: "Al-Maajid", 67: "Al-Waahid", 68: "As-Sa-mad", 69: "Al-Qaadir", 70: "Al-Muqtadir",
-            71: "Al-Muqad-dim", 72: "Al-Mu'akh-khir", 73: "Al-'Aw-wal", 74: "Al-'Aakhir", 75: "Az-Zhaahir", 76: "Al-Baatin", 77: "Al-Waali", 78: "Al-Muta 'aali", 79: "Al-Barr",
-            80: "At-Taw-waab", 81: "Al-Mun-taqim", 82: "Al-'A-fuww", 83: "Ar-Ra'oof", 84: "Maalikul Mulk", 85: "Dhul Jalaali wal Ikraam", 86: "Al-Muqsit", 87: "Al-Jaami'", 88: "Al-Gha-niyy", 89: "Al-Mughnee",
-            90: "Al-Maani'", 91: "Ad-Daarr", 92: "An-Naafi'", 93: "An-Noor", 94: "Al-Haadi", 95: "Al-Badee'", 96: "Al-Baaqi", 97: "Al-Waarith", 98: "Ar-Rasheed", 99: "As-Sa-boor"
-        };
-        const nomsAllahArabes = {
-            1: "اللَّهُ", 2: "الرَّحْمَٰنُ", 3: "الرَّحِيمُ", 4: "الْمَلِكُ", 5: "الْقُدُّوسُ", 6: "السَّلَامُ", 7: "الْمُؤْمِنُ", 8: "الْمُهَيْمِنُ", 9: "الْعَزِيزُ", 10: "الْجَبَّارُ",
-            11: "الْمُتَكَبِّرُ", 12: "الْخَالِقُ", 13: "الْبَارِئُ", 14: "الْمُصَوِّرُ", 15: "الْغَفَّارُ", 16: "الْقَهَّارُ", 17: "الْوَهَّابُ", 18: "الرَّزَّاقُ", 19: "الْفَتَّاحُ", 20: "الْعَلِيمُ",
-            21: "الْقَابِضُ", 22: "الْبَاسِطُ", 23: "الْخَافِضُ", 24: "الرَّافِعُ", 25: "الْمُعِزُّ", 26: "الْمُذِلُّ", 27: "السَّمِيعُ", 28: "الْبَصِيرُ", 29: "الْحَكَمُ", 30: "الْعَدْلُ",
-            31: "اللَّطِيفُ", 32: "الْخَبِيرُ", 33: "الْحَلِيمُ", 34: "الْعَظِيمُ", 35: "الْغَفُورُ", 36: "الشَّكُورُ", 37: "الْعَلِيُّ", 38: "الْكَبِيرُ", 39: "الْحَفِيظُ", 40: "الْمُقِيتُ",
-            41: "الْحَسِيبُ", 42: "الْجَلِيلُ", 43: "الْكَرِيمُ", 44: "الرَّقِيبُ", 45: "الْمُجِيبُ", 46: "الْوَاسِعُ", 47: "الْحَكِيمُ", 48: "الْوَدُودُ", 49: "الْمَجِيدُ", 50: "الْبَاعِثُ",
-            51: "الشَّهِيدُ", 52: "الْحَقُّ", 53: "الْوَكِيلُ", 54: "الْقَوِيُّ", 55: "الْمَتِينُ", 56: "الْوَلِيُّ", 57: "الْحَمِيدُ", 58: "الْمُحْصِي", 59: "الْمُبْدِئُ", 60: "الْمُعِيدُ",
-            61: "الْمُحْيِي", 62: "الْمُمِيتُ", 63: "الْحَيُّ", 64: "الْقَيُّومُ", 65: "الْوَاجِدُ", 66: "الْمَاجِدُ", 67: "الْوَاحِدُ", 68: "الصَّمَدُ", 69: "الْقَادِرُ", 70: "الْمُقْتَدِرُ",
-            71: "الْمُقَدِّمُ", 72: "الْمُؤَخِّرُ", 73: "الْأَوَّلُ", 74: "الْآخِرُ", 75: "الظَّاهِرُ", 76: "الْبَاطِنُ", 77: "الْوَالِي", 78: "الْمُتَعَالِي", 79: "الْبَرُّ", 80: "التَّوَّابُ",
-            81: "الْمُنْتَقِمُ", 82: "الْعَفُوُّ", 83: "الرَّءُوفُ", 84: "مَالِكُ الْمُلْكِ", 85: "ذُو الْجَلَالِ وَالْإِكْرَامِ", 86: "الْمُقْسِطُ", 87: "الْجَامِعُ", 88: "الْغَنِيُّ", 89: "الْمُغْنِي",
-            90: "الْمَانِعُ", 91: "الضَّارُّ", 92: "النَّافِعُ", 93: "النُّورُ", 94: "الْهَادِي", 95: "الْبَدِيعُ", 96: "الْبَاقِي", 97: "الْوَارِثُ", 98: "الرَّشِيدُ", 99: "الصَّبُورُ"
-        };
-
         function afficherNombres() {
-            const nombres = traiterNombres(1, 99);
             const container = document.getElementById('nombresContainer');
-            
-            nombres.forEach(item => {
-                const div = document.createElement('div');
-                div.className = 'nombre-item';
-                
-                const emoji = emojisAllah[item.nombre] || "📿";
-                const nomComplet = nomsAllahComplets[item.nombre] || "";
-                const nomArabe = nomsAllahArabes[item.nombre] || "";
-                
-                div.innerHTML = `
-                    <div class="nom-arabe" dir="rtl">${nomArabe}</div>
-                    <div class="item-header">
-                        <div class="numero">${item.nombre}</div>
-                        <div class="symbole">${item.symbole}</div>
-                        <div style="font-size: 1.5em;">${emoji}</div>
-                    </div>
-                    <input type="text" class="espace-nom" placeholder="Entrez le nom d'Allah ici..." 
-                           data-nombre="${item.nombre}" value="${nomComplet}">
-                `;
-                
-                container.appendChild(div);
+
+            NOMS_ALLAH.forEach(item => {
+                const carte = document.createElement('a');
+                carte.className = 'nombre-item';
+                carte.href = 'index.html?n=' + item.n;
+                carte.dataset.recherche = normaliser(item.n + ' ' + item.nom + ' ' + item.attribut);
+                carte.innerHTML =
+                    '<div class="numero">N° ' + item.n + '</div>' +
+                    '<div class="nom-arabe" dir="rtl">' + item.arabe + '</div>' +
+                    '<div class="nom-translit">' + item.nom + '</div>' +
+                    '<div class="attribut">' + item.attribut + '</div>';
+                container.appendChild(carte);
             });
         }
 
-        // Initialiser l'affichage
-        document.addEventListener('DOMContentLoaded', afficherNombres);
+        function filtrer() {
+            const requete = normaliser(document.getElementById('filterInput').value);
+            const cartes = document.querySelectorAll('.nombre-item');
+            let visibles = 0;
 
-        // Sauvegarder automatiquement les entrées
-        document.addEventListener('input', function(e) {
-            if (e.target.classList.contains('espace-nom')) {
-                const nombre = e.target.dataset.nombre;
-                const valeur = e.target.value;
-                localStorage.setItem(`allah_${nombre}`, valeur);
-            }
-        });
+            cartes.forEach(carte => {
+                const correspond = !requete || carte.dataset.recherche.includes(requete);
+                carte.style.display = correspond ? '' : 'none';
+                if (correspond) visibles++;
+            });
 
-        // Charger les valeurs sauvegardées
+            document.getElementById('aucunResultat').style.display = visibles === 0 ? 'block' : 'none';
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(() => {
-                const inputs = document.querySelectorAll('.espace-nom');
-                inputs.forEach(input => {
-                    const nombre = input.dataset.nombre;
-                    const valeurSauvegardee = localStorage.getItem(`allah_${nombre}`);
-                    if (valeurSauvegardee) {
-                        input.value = valeurSauvegardee;
-                    }
-                });
-            }, 100);
+            afficherNombres();
+            document.getElementById('filterInput').addEventListener('input', filtrer);
         });
+
+        // PWA : enregistrement du service worker (nécessite un serveur http/https)
+        if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+            navigator.serviceWorker.register('sw.js').catch(function() {});
+        }
     </script>
 </body>
-</html> 
+</html>

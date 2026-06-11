@@ -1,0 +1,18 @@
+{
+    "name": "Asma al Husna - Les 99 Noms d'Allah",
+    "short_name": "Asma al Husna",
+    "description": "Recherchez, apprenez et mémorisez les 99 Noms d'Allah",
+    "lang": "fr",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#121828",
+    "theme_color": "#121828",
+    "icons": [
+        {
+            "src": "icon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        }
+    ]
+}

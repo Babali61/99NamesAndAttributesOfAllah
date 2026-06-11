@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#121828">
+    <title>Asma al Husna - Mode mémorisation</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #121828;
+            --container-bg: #ffffff;
+            --primary-text: #2c3e50;
+            --secondary-text: #7f8c8d;
+            --accent-color: #d4af37;
+            --accent-hover: #e5c160;
+            --vert: #27ae60;
+            --rouge: #e74c3c;
+            --arabic-font: 'Amiri', 'Traditional Arabic', serif;
+            --latin-font: 'Poppins', sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: var(--latin-font);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 40px 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background-color: var(--container-bg);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 560px;
+            text-align: center;
+        }
+
+        h1 {
+            font-weight: 600;
+            color: var(--primary-text);
+            margin: 0 0 8px;
+            font-size: 1.9em;
+        }
+
+        .subtitle {
+            color: var(--secondary-text);
+            font-size: 0.95em;
+            font-weight: 300;
+            margin: 0 0 25px;
+        }
+
+        .progression {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            color: var(--secondary-text);
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .score { color: var(--accent-color); }
+
+        .question-card {
+            background: #fff;
+            padding: 25px 20px;
+            border-radius: 15px;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .question-arabe {
+            font-family: var(--arabic-font);
+            font-weight: 700;
+            font-size: 3.5em;
+            color: var(--primary-text);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .question-nom {
+            font-size: 1.3em;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .question-consigne {
+            color: var(--secondary-text);
+            font-size: 0.9em;
+            font-weight: 300;
+            margin: 15px 0 0;
+        }
+
+        .choix {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .choix-btn {
+            padding: 14px 18px;
+            font-size: 1em;
+            font-family: var(--latin-font);
+            font-weight: 400;
+            background-color: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--primary-text);
+        }
+
+        .choix-btn:hover:not(:disabled) {
+            border-color: var(--accent-color);
+            background-color: #fffdf5;
+        }
+
+        .choix-btn:disabled { cursor: default; }
+
+        .choix-btn.correct {
+            background-color: #eafaf1;
+            border-color: var(--vert);
+            color: var(--vert);
+            font-weight: 600;
+        }
+
+        .choix-btn.incorrect {
+            background-color: #fdedec;
+            border-color: var(--rouge);
+            color: var(--rouge);
+        }
+
+        .suite {
+            margin-top: 20px;
+            min-height: 48px;
+        }
+
+        .btn-principal {
+            padding: 12px 30px;
+            font-size: 1em;
+            font-weight: 600;
+            font-family: var(--latin-font);
+            background-color: var(--accent-color);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-principal:hover {
+            background-color: var(--accent-hover);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .resultat-final {
+            display: none;
+        }
+
+        .resultat-score {
+            font-size: 3em;
+            font-weight: 600;
+            color: var(--accent-color);
+            margin: 10px 0;
+        }
+
+        .resultat-message {
+            color: var(--secondary-text);
+            font-weight: 300;
+            margin-bottom: 25px;
+        }
+
+        .navigation {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f1f3f4;
+            color: var(--secondary-text);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .nav-btn:hover {
+            background-color: #e9ecef;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mode mémorisation</h1>
+        <p class="subtitle">Retrouvez la signification de chaque nom</p>
+
+        <div id="zoneQuiz">
+            <div class="progression">
+                <span id="compteur"></span>
+                <span class="score" id="score"></span>
+            </div>
+
+            <div class="question-card">
+                <div id="questionArabe" class="question-arabe" dir="rtl"></div>
+                <div id="questionNom" class="question-nom"></div>
+                <p class="question-consigne">Quelle est la signification de ce nom ?</p>
+            </div>
+
+            <div id="choix" class="choix"></div>
+
+            <div class="suite">
+                <button id="btnSuivant" class="btn-principal" onclick="questionSuivante()" style="display:none;">Question suivante</button>
+            </div>
+        </div>
+
+        <div id="resultatFinal" class="resultat-final">
+            <div class="resultat-score" id="scoreFinal"></div>
+            <p class="resultat-message" id="messageFinal"></p>
+            <button class="btn-principal" onclick="demarrerQuiz()">Rejouer</button>
+        </div>
+
+        <div class="navigation">
+            <a href="index.html" class="nav-btn">Recherche détaillée</a>
+            <a href="nombres_allah.html" class="nav-btn">Liste complète</a>
+        </div>
+    </div>
+
+    <script src="noms.js"></script>
+    <script>
+        const NB_QUESTIONS = 10;
+        const NB_CHOIX = 4;
+
+        let questions = [];
+        let indexQuestion = 0;
+        let bonnesReponses = 0;
+
+        // Noms ayant un attribut (le n°1 « Allah » est exclu du quiz)
+        const nomsJouables = NOMS_ALLAH.filter(item => item.attribut);
+
+        function melanger(tableau) {
+            const copie = tableau.slice();
+            for (let i = copie.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copie[i], copie[j]] = [copie[j], copie[i]];
+            }
+            return copie;
+        }
+
+        function demarrerQuiz() {
+            questions = melanger(nomsJouables).slice(0, NB_QUESTIONS);
+            indexQuestion = 0;
+            bonnesReponses = 0;
+            document.getElementById('resultatFinal').style.display = 'none';
+            document.getElementById('zoneQuiz').style.display = 'block';
+            afficherQuestion();
+        }
+
+        function afficherQuestion() {
+            const question = questions[indexQuestion];
+
+            document.getElementById('compteur').textContent = 'Question ' + (indexQuestion + 1) + ' / ' + NB_QUESTIONS;
+            document.getElementById('score').textContent = bonnesReponses + ' bonne(s) réponse(s)';
+            document.getElementById('questionArabe').textContent = question.arabe;
+            document.getElementById('questionNom').textContent = question.nom;
+            document.getElementById('btnSuivant').style.display = 'none';
+
+            // Construire les choix : la bonne réponse + des attributs distincts pris au hasard
+            const distracteurs = melanger(nomsJouables.filter(item =>
+                item.n !== question.n && item.attribut !== question.attribut
+            )).slice(0, NB_CHOIX - 1);
+            const options = melanger([question].concat(distracteurs));
+
+            const conteneur = document.getElementById('choix');
+            conteneur.innerHTML = '';
+            options.forEach(option => {
+                const btn = document.createElement('button');
+                btn.className = 'choix-btn';
+                btn.textContent = option.attribut;
+                btn.addEventListener('click', function() {
+                    repondre(btn, option, question);
+                });
+                conteneur.appendChild(btn);
+            });
+        }
+
+        function repondre(btnClique, option, question) {
+            const boutons = document.querySelectorAll('.choix-btn');
+            boutons.forEach(btn => {
+                btn.disabled = true;
+                if (btn.textContent === question.attribut) {
+                    btn.classList.add('correct');
+                }
+            });
+
+            if (option.n === question.n) {
+                bonnesReponses++;
+            } else {
+                btnClique.classList.add('incorrect');
+            }
+
+            document.getElementById('score').textContent = bonnesReponses + ' bonne(s) réponse(s)';
+            document.getElementById('btnSuivant').style.display = 'inline-block';
+            document.getElementById('btnSuivant').textContent =
+                indexQuestion === NB_QUESTIONS - 1 ? 'Voir le résultat' : 'Question suivante';
+        }
+
+        function questionSuivante() {
+            indexQuestion++;
+            if (indexQuestion < NB_QUESTIONS) {
+                afficherQuestion();
+            } else {
+                afficherResultat();
+            }
+        }
+
+        function afficherResultat() {
+            document.getElementById('zoneQuiz').style.display = 'none';
+            document.getElementById('resultatFinal').style.display = 'block';
+            document.getElementById('scoreFinal').textContent = bonnesReponses + ' / ' + NB_QUESTIONS;
+
+            let message;
+            if (bonnesReponses === NB_QUESTIONS) {
+                message = 'Excellent ! Vous maîtrisez ces noms parfaitement.';
+            } else if (bonnesReponses >= NB_QUESTIONS * 0.7) {
+                message = 'Très bien ! Encore un peu de révision et ce sera parfait.';
+            } else if (bonnesReponses >= NB_QUESTIONS * 0.4) {
+                message = 'Bon début, continuez à réviser la liste complète.';
+            } else {
+                message = 'Consultez la liste complète pour réviser, puis réessayez.';
+            }
+            document.getElementById('messageFinal').textContent = message;
+        }
+
+        document.addEventListener('DOMContentLoaded', demarrerQuiz);
+
+        // PWA : enregistrement du service worker (nécessite un serveur http/https)
+        if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+            navigator.serviceWorker.register('sw.js').catch(function() {});
+        }
+    </script>
+</body>
+</html>

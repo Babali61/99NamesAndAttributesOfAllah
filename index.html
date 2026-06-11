@@ -3,30 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#121828">
     <title>Asma al Husna - Recherche des Noms d'Allah</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #121828; /* Deep Blue-Gray */
+            --bg-color: #121828;
             --container-bg: #ffffff;
-            --primary-text: #2c3e50; /* Dark Blue-Gray Text */
-            --secondary-text: #7f8c8d; /* Grayish Text */
-            --accent-color: #d4af37; /* Gold */
+            --primary-text: #2c3e50;
+            --secondary-text: #7f8c8d;
+            --accent-color: #d4af37;
             --accent-hover: #e5c160;
             --arabic-font: 'Amiri', 'Traditional Arabic', serif;
             --latin-font: 'Poppins', sans-serif;
         }
 
+        * { box-sizing: border-box; }
+
         body {
             font-family: var(--latin-font);
             background-color: var(--bg-color);
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4V0h1v4h9V0h1v4h9V0h1v4h9V0h1v4h9V0h1v4h9V0h1v4h9V0h1v4h9V0h1v4h9V0h1v4h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10-10h4v-9h-4v9zm-10 0h4v-9h-4v9zm-10 0h4v-9h-4v9zm-10 0h4v-9h-4v9zm-10 0h4v-9h-4v9zm-10 0h4v-9h-4v9zm-10 0h4v-9h-4v9zm-10 0h4v-9h-4v9zm-10-10v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10-10h4v-9h-4v9zm-10 0h4v-9h-4v9zm-10 0h4v-9h-4v9zm-10 0h4v-9h-4v9zm-10 0h4v-9h-4v9zm-10 0h4v-9h-4v9zm-10 0h4v-9h-4v9zm-10 0h4v-9h-4v9zm-10-10v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10-10h4v-9h-4v9zm-10 0h4v-9h-4v9zm-10 0h4v-9h-4v9zm-10 0h4v-9h-4v9zm-10 0h4v-9h-4v9zm-10 0h4v-9h-4v9zm-10 0h4v-9h-4v9zm-10 0h4v-9h-4v9zm-10-10v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10 0v-4h-9v4h9zm-10-10h4v-9h-4v9zm-10 0h4v-9h-4v9zm-10 0h4v-9h-4v9zm-10 0h4v-9h-4v9zm-10 0h4v-9h-4v9zm-10 0h4v-9h-4v9zm-10 0h4v-9h-4v9zm-10 0h4v-9h-4v9z'/%3E%3Cpath d='M6 6h4v4H6V6zm10 0h4v4h-4V6zm10 0h4v4h-4V6zm10 0h4v4h-4V6zm10 0h4v4h-4V6zm10 0h4v4h-4V6zm10 0h4v4h-4V6zm10 0h4v4h-4V6zm10 0h4v4h-4V6zM6 16h4v4H6v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zM6 26h4v4H6v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zM6 36h4v4H6v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zM6 46h4v4H6v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zM6 56h4v4H6v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zM6 66h4v4H6v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zM6 76h4v4H6v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zM6 86h4v4H6v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4zm10 0h4v4h-4v-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
             margin: 0;
             padding: 40px 20px;
             min-height: 100vh;
-            box-sizing: border-box;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -38,141 +41,238 @@
             border-radius: 20px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
             width: 100%;
-            max-width: 600px;
+            max-width: 620px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
         }
 
         h1 {
             font-weight: 600;
             color: var(--primary-text);
-            margin-bottom: 20px;
-            font-size: 2.2em;
+            margin: 0 0 8px;
+            font-size: 1.9em;
         }
 
-        .instructions {
-            background-color: #f8f9fa;
-            padding: 15px 20px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            border: 1px solid #e9ecef;
-            text-align: left;
+        .subtitle {
             color: var(--secondary-text);
-        }
-
-        .instructions h3 {
-            margin-top: 0;
-            color: var(--primary-text);
-            font-weight: 600;
-        }
-
-        .instructions p {
-            margin: 5px 0;
-            font-size: 0.9em;
+            font-size: 0.95em;
             font-weight: 300;
+            margin: 0 0 30px;
         }
 
         .search-section {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 30px;
+            position: relative;
+            margin-bottom: 10px;
         }
 
         .search-input {
-            width: 120px;
-            padding: 12px;
-            font-size: 20px;
+            width: 100%;
+            padding: 14px 18px;
+            font-size: 17px;
             border: 2px solid #ced4da;
-            border-radius: 10px;
+            border-radius: 12px;
             outline: none;
-            text-align: center;
             transition: all 0.3s ease;
             background-color: #f8f9fa;
+            font-family: var(--latin-font);
         }
 
         .search-input:focus {
             border-color: var(--accent-color);
             box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+            background-color: #fff;
         }
 
-        .search-btn {
-            padding: 12px 25px;
-            font-size: 16px;
-            font-weight: 600;
-            background-color: var(--accent-color);
-            color: #fff;
-            border: none;
-            border-radius: 10px;
+        .suggestions {
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            right: 0;
+            background: #fff;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+            list-style: none;
+            margin: 0;
+            padding: 6px;
+            max-height: 260px;
+            overflow-y: auto;
+            z-index: 10;
+            display: none;
+            text-align: left;
+        }
+
+        .suggestions li {
+            padding: 10px 14px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
         }
 
-        .search-btn:hover {
-            background-color: var(--accent-hover);
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-            transform: translateY(-2px);
+        .suggestions li:hover,
+        .suggestions li.active {
+            background-color: #faf3e0;
+        }
+
+        .suggestions .s-num {
+            color: var(--accent-color);
+            font-weight: 600;
+            min-width: 28px;
+        }
+
+        .suggestions .s-nom {
+            color: var(--primary-text);
+            font-weight: 600;
+        }
+
+        .suggestions .s-attr {
+            color: var(--secondary-text);
+            font-size: 0.85em;
+            font-weight: 300;
+        }
+
+        .hint {
+            color: var(--secondary-text);
+            font-size: 0.8em;
+            font-weight: 300;
+            margin: 0 0 25px;
         }
 
         .result-section {
-            display: none; /* Initially hidden */
             background: #fff;
-            padding: 40px;
+            padding: 30px 25px;
             border-radius: 15px;
-            margin-top: 20px;
             border: 1px solid #e9ecef;
-            animation: fadeIn 0.5s ease-in-out;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            animation: fadeIn 0.4s ease-in-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95) translateY(10px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .result-number {
-            font-size: 2em;
-            color: #ced4da;
+            font-size: 1.1em;
+            color: var(--secondary-text);
             font-weight: 600;
+            letter-spacing: 1px;
         }
 
         .result-name-ar {
             font-family: var(--arabic-font);
             font-weight: 700;
-            font-size: 6em;
+            font-size: 4.2em;
             color: var(--primary-text);
             margin: 0;
-            line-height: 1.7;
+            line-height: 1.6;
         }
 
         .result-name {
-            font-size: 1.8em;
+            font-size: 1.6em;
             color: var(--accent-color);
             font-weight: 600;
             margin-top: 5px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .result-attribute {
-            font-size: 1.2em;
+            font-size: 1.15em;
+            color: var(--primary-text);
+            font-weight: 400;
+        }
+
+        .result-ref {
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 0.8em;
+            font-weight: 600;
+            color: var(--accent-color);
+            background-color: #faf3e0;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .result-actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            background-color: #fff;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 9px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: var(--latin-font);
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .action-btn:hover {
+            background-color: var(--accent-color);
+            color: #fff;
+        }
+
+        .action-feedback {
+            font-size: 0.8em;
             color: var(--secondary-text);
-            margin-bottom: 20px;
+            font-weight: 300;
+            margin-top: 8px;
+            min-height: 1.2em;
         }
 
-        .result-emoji {
-            font-size: 3em;
-            margin-top: 10px;
+        .result-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+            gap: 10px;
         }
 
-        /* Hide the original symbol from the algorithm */
-        .result-symbol { display: none; }
+        .nav-arrow {
+            background-color: #f1f3f4;
+            border: none;
+            color: var(--primary-text);
+            padding: 10px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: var(--latin-font);
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .nav-arrow:hover:not(:disabled) {
+            background-color: var(--accent-color);
+            color: #fff;
+        }
+
+        .nav-arrow:disabled {
+            opacity: 0.35;
+            cursor: default;
+        }
+
+        .result-counter {
+            color: var(--secondary-text);
+            font-size: 0.85em;
+            font-weight: 300;
+        }
 
         .navigation {
-            text-align: center;
-            margin-top: 30px;
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
         }
-        
+
         .nav-btn {
             display: inline-block;
             padding: 10px 20px;
@@ -182,247 +282,218 @@
             border-radius: 8px;
             transition: all 0.3s ease;
             font-weight: 600;
+            font-size: 0.9em;
         }
-        
+
         .nav-btn:hover {
             background-color: #e9ecef;
             transform: translateY(-2px);
-        }
-        .error-message {
-            background-color: #e74c3c;
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            margin-top: 20px;
-            display: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>📿 Recherche des Noms d'Allah 📿</h1>
-        
-        <div class="instructions">
-            <h3>Comment utiliser :</h3>
-            <p>1. Tapez un chiffre entre 1 et 99 dans le champ de recherche</p>
-            <p>2. Cliquez sur "Rechercher" ou appuyez sur Entrée</p>
-            <p>3. Le nom d'Allah correspondant apparaîtra avec son attribut</p>
-            <p><strong>Note :</strong> Vous pouvez modifier ou personnaliser les noms en respectant les voyelles</p>
-        </div>
+        <h1>Asma al Husna</h1>
+        <p class="subtitle">Recherchez l'un des 99 Noms d'Allah par son numéro ou son nom</p>
 
         <div class="search-section">
-            <input type="number" id="searchInput" class="search-input" placeholder="1-99" min="1" max="99">
-            <button onclick="rechercherAllah()" class="search-btn">Rechercher</button>
+            <input type="text" id="searchInput" class="search-input"
+                   placeholder="Ex. : 2, Rahman, Miséricordieux…"
+                   autocomplete="off" aria-label="Rechercher un nom d'Allah">
+            <ul id="suggestions" class="suggestions"></ul>
         </div>
-
-        <div id="errorMessage" class="error-message">
-            Veuillez entrer un nombre entre 1 et 99
-        </div>
+        <p class="hint">Tapez pour rechercher, ou parcourez avec les flèches ci-dessous</p>
 
         <div id="resultSection" class="result-section">
             <div id="resultNumber" class="result-number"></div>
-            <div id="resultSymbol" class="result-symbol"></div>
+            <div id="resultNameAr" class="result-name-ar" dir="rtl"></div>
             <div id="resultName" class="result-name"></div>
-            <div id="resultNameAr" class="result-name-ar"></div>
             <div id="resultAttribute" class="result-attribute"></div>
-            <div id="resultEmoji" class="result-emoji"></div>
+            <span id="resultRef" class="result-ref"></span>
+            <div class="result-actions">
+                <button class="action-btn" onclick="ecouter()">&#9658; Écouter</button>
+                <button class="action-btn" onclick="partager()">Partager</button>
+            </div>
+            <div id="actionFeedback" class="action-feedback"></div>
+            <div class="result-nav">
+                <button id="btnPrev" class="nav-arrow" onclick="naviguer(-1)">&larr; Précédent</button>
+                <span id="resultCounter" class="result-counter"></span>
+                <button id="btnNext" class="nav-arrow" onclick="naviguer(1)">Suivant &rarr;</button>
+            </div>
         </div>
 
         <div class="navigation">
-            <a href="nombres_allah.html" class="nav-btn">← Retour vers 99 Names of Allah (Al Asma Ul Husna</a>
+            <a href="nombres_allah.html" class="nav-btn">Liste complète</a>
+            <a href="quiz.html" class="nav-btn">Mode mémorisation</a>
         </div>
     </div>
 
+    <script src="noms.js"></script>
     <script>
-        // Base de données des noms d'Allah (99 noms) - Asma al Husna
-        const nomsAllah = {
-            1: { nom: "Allah", nom_arabe: "اللَّهُ", attribut: "Le Dieu", emoji: "☪️" },
-            2: { nom: "Ar-Rahman", nom_arabe: "الرَّحْمَٰنُ", attribut: "Le Très Miséricordieux", emoji: "🤲" },
-            3: { nom: "Ar-Rahim", nom_arabe: "الرَّحِيمُ", attribut: "Le Tout Miséricordieux", emoji: "💝" },
-            4: { nom: "Al-Malik", nom_arabe: "الْمَلِكُ", attribut: "Le Souverain", emoji: "👑" },
-            5: { nom: "Al-Quddus", nom_arabe: "الْقُدُّوسُ", attribut: "Le Très Saint", emoji: "✨" },
-            6: { nom: "As-Salam", nom_arabe: "السَّلَامُ", attribut: "La Source de Paix", emoji: "🕊️" },
-            7: { nom: "Al-Mu'min", nom_arabe: "الْمُؤْمِنُ", attribut: "Le Donateur de Sécurité", emoji: "🛡️" },
-            8: { nom: "Al-Muhaymin", nom_arabe: "الْمُهَيْمِنُ", attribut: "Le Gardien", emoji: "👁️" },
-            9: { nom: "Al-'Aziz", nom_arabe: "الْعَزِيزُ", attribut: "Le Tout-Puissant", emoji: "💪" },
-            10: { nom: "Al-Jabbar", nom_arabe: "الْجَبَّارُ", attribut: "Le Restaurateur", emoji: "⚡" },
-            11: { nom: "Al-Mutakabbir", nom_arabe: "الْمُتَكَبِّرُ", attribut: "Le Majestueux", emoji: "🌟" },
-            12: { nom: "Al-Khaaliq", nom_arabe: "الْخَالِقُ", attribut: "Le Créateur", emoji: "🌍" },
-            13: { nom: "Al-Baari'", nom_arabe: "الْبَارِئُ", attribut: "Le Faiseur", emoji: "🎨" },
-            14: { nom: "Al-Musawwir", nom_arabe: "الْمُصَوِّرُ", attribut: "Le Façonneur de Formes", emoji: "🎭" },
-            15: { nom: "Al-Ghaffaar", nom_arabe: "الْغَفَّارُ", attribut: "Le Pardonneur", emoji: "🙏" },
-            16: { nom: "Al-Qahhaar", nom_arabe: "الْقَهَّارُ", attribut: "Celui qui a le Contrôle de Tout", emoji: "🔥" },
-            17: { nom: "Al-Wahhab", nom_arabe: "الْوَهَّابُ", attribut: "Le Donateur de Tout", emoji: "🎁" },
-            18: { nom: "Ar-Razzaq", nom_arabe: "الرَّزَّاقُ", attribut: "Le Pourvoyeur", emoji: "🍞" },
-            19: { nom: "Al-Fattah", nom_arabe: "الْفَتَّاحُ", attribut: "L'Ouvreur", emoji: "🔓" },
-            20: { nom: "Al-'Alim", nom_arabe: "الْعَلِيمُ", attribut: "L'Omniscient", emoji: "🧠" },
-            21: { nom: "Al-Qaabid", nom_arabe: "الْقَابِضُ", attribut: "Le Rétrécisseur", emoji: "✋" },
-            22: { nom: "Al-Baasit", nom_arabe: "الْبَاسِطُ", attribut: "L'Étendeur", emoji: "🤲" },
-            23: { nom: "Al-Khaafid", nom_arabe: "الْخَافِضُ", attribut: "L'Abaisseur", emoji: "⬇️" },
-            24: { nom: "Ar-Raafi'", nom_arabe: "الرَّافِعُ", attribut: "L'Exaltateur", emoji: "⬆️" },
-            25: { nom: "Al-Mu'izz", nom_arabe: "الْمُعِزُّ", attribut: "Le Donateur d'Honneur", emoji: "🏆" },
-            26: { nom: "Al-Mudhill", nom_arabe: "الْمُذِلُّ", attribut: "Le Donateur de Déshonneur", emoji: "😔" },
-            27: { nom: "As-Sami'", nom_arabe: "السَّمِيعُ", attribut: "L'Audient", emoji: "👂" },
-            28: { nom: "Al-Basir", nom_arabe: "الْبَصِيرُ", attribut: "Le Voyant", emoji: "👁️" },
-            29: { nom: "Al-Hakam", nom_arabe: "الْحَكَمُ", attribut: "Le Juge", emoji: "⚖️" },
-            30: { nom: "Al-'Adl", nom_arabe: "الْعَدْلُ", attribut: "Le Juste", emoji: "⚖️" },
-            31: { nom: "Al-Latif", nom_arabe: "اللَّطِيفُ", attribut: "Le Doux", emoji: "🕊️" },
-            32: { nom: "Al-Khabir", nom_arabe: "الْخَبِيرُ", attribut: "Le Conscient", emoji: "🔍" },
-            33: { nom: "Al-Halim", nom_arabe: "الْحَلِيمُ", attribut: "Le Tolérant", emoji: "😌" },
-            34: { nom: "Al-'Adheem", nom_arabe: "الْعَظِيمُ", attribut: "Le Grand", emoji: "🌌" },
-            35: { nom: "Al-Ghafoor", nom_arabe: "الْغَفُورُ", attribut: "Le Tout Pardonneur", emoji: "💚" },
-            36: { nom: "Ash-Shakoor", nom_arabe: "الشَّكُورُ", attribut: "Le Reconnaissant", emoji: "🙏" },
-            37: { nom: "Al-'Ali", nom_arabe: "الْعَلِيُّ", attribut: "Le Très Haut", emoji: "☁️" },
-            38: { nom: "Al-Kabir", nom_arabe: "الْكَبِيرُ", attribut: "Le Plus Grand", emoji: "🏔️" },
-            39: { nom: "Al-Hafidh", nom_arabe: "الْحَفِيظُ", attribut: "Le Préservateur", emoji: "🛡️" },
-            40: { nom: "Al-Muqit", nom_arabe: "الْمُقِيتُ", attribut: "Le Nourricier", emoji: "🍎" },
-            41: { nom: "Al-Hasib", nom_arabe: "الْحَسِيبُ", attribut: "Le Juge du Jugement", emoji: "📊" },
-            42: { nom: "Aj-Jalil", nom_arabe: "الْجَلِيلُ", attribut: "Le Très Honorable", emoji: "👑" },
-            43: { nom: "Al-Karim", nom_arabe: "الْكَرِيمُ", attribut: "Le Généreux", emoji: "💎" },
-            44: { nom: "Ar-Raqib", nom_arabe: "الرَّقِيبُ", attribut: "Le Vigilant", emoji: "👀" },
-            45: { nom: "Al-Mujib", nom_arabe: "الْمُجِيبُ", attribut: "Celui qui Répond", emoji: "📞" },
-            46: { nom: "Al-Waasi'", nom_arabe: "الْوَاسِعُ", attribut: "L'Englobant", emoji: "🌍" },
-            47: { nom: "Al-Hakim", nom_arabe: "الْحَكِيمُ", attribut: "Le Sage", emoji: "🧙‍♂️" },
-            48: { nom: "Al-Waduud", nom_arabe: "الْوَدُودُ", attribut: "Le Gentil", emoji: "💖" },
-            49: { nom: "Al-Majid", nom_arabe: "الْمَجِيدُ", attribut: "Le Tout Glorieux", emoji: "⭐" },
-            50: { nom: "Al-Ba'ith", nom_arabe: "الْبَاعِثُ", attribut: "Le Restaurateur de Vie", emoji: "🌅" },
-            51: { nom: "Ash-Shahid", nom_arabe: "الشَّهِيدُ", attribut: "Le Témoin", emoji: "👁️" },
-            52: { nom: "Al-Haqq", nom_arabe: "الْحَقُّ", attribut: "La Vérité", emoji: "✅" },
-            53: { nom: "Al-Wakil", nom_arabe: "الْوَكِيلُ", attribut: "Le Responsable", emoji: "🤝" },
-            54: { nom: "Al-Qawi", nom_arabe: "الْقَوِيُّ", attribut: "Le Très Fort", emoji: "💪" },
-            55: { nom: "Al-Matin", nom_arabe: "الْمَتِينُ", attribut: "Le Ferme", emoji: "🪨" },
-            56: { nom: "Al-Wali", nom_arabe: "الْوَلِيُّ", attribut: "L'Ami Protecteur", emoji: "🤗" },
-            57: { nom: "Al-Hamid", nom_arabe: "الْحَمِيدُ", attribut: "Le Digne de Louanges", emoji: "👏" },
-            58: { nom: "Al-Muhsi", nom_arabe: "الْمُحْصِي", attribut: "L'Évaluateur", emoji: "🔢" },
-            59: { nom: "Al-Mubdi'", nom_arabe: "الْمُبْدِئُ", attribut: "L'Originateur", emoji: "🎬" },
-            60: { nom: "Al-Mu'id", nom_arabe: "الْمُعِيدُ", attribut: "Le Restaurateur", emoji: "🔄" },
-            61: { nom: "Al-Muhyi", nom_arabe: "الْمُحْيِي", attribut: "Le Donneur de Vie", emoji: "🌱" },
-            62: { nom: "Al-Mumit", nom_arabe: "الْمُمِيتُ", attribut: "Le Donneur de Mort", emoji: "🍂" },
-            63: { nom: "Al-Hayy", nom_arabe: "الْحَيُّ", attribut: "L'Éternel Vivant", emoji: "❤️" },
-            64: { nom: "Al-Qayyuum", nom_arabe: "الْقَيُّومُ", attribut: "Le Soutien de Tout", emoji: "🔄" },
-            65: { nom: "Al-Wajid", nom_arabe: "الْوَاجِدُ", attribut: "Le Trouveur", emoji: "🔍" },
-            66: { nom: "Al-Majid", nom_arabe: "الْمَاجِدُ", attribut: "Le Noble et Illustre", emoji: "👑" },
-            67: { nom: "Al-Wahid", nom_arabe: "الْوَاحِدُ", attribut: "L'Unique et Inclusif", emoji: "1️⃣" },
-            68: { nom: "As-Samad", nom_arabe: "الصَّمَدُ", attribut: "L'Éternel et Autosuffisant", emoji: "♾️" },
-            69: { nom: "Al-Qaadir", nom_arabe: "الْقَادِرُ", attribut: "Celui qui a l'Autorité", emoji: "💪" },
-            70: { nom: "Al-Muqtadir", nom_arabe: "الْمُقْتَدِرُ", attribut: "Celui avec le Plein Pouvoir", emoji: "⚡" },
-            71: { nom: "Al-Muqaddim", nom_arabe: "الْمُقَدِّمُ", attribut: "Celui qui Avance", emoji: "➡️" },
-            72: { nom: "Al-Mu'akhkhir", nom_arabe: "الْمُؤَخِّرُ", attribut: "Le Retardateur", emoji: "⬅️" },
-            73: { nom: "Al-Awwal", nom_arabe: "الْأَوَّلُ", attribut: "Le Premier", emoji: "1️⃣" },
-            74: { nom: "Al-Akhir", nom_arabe: "الْآخِرُ", attribut: "Le Dernier", emoji: "🔚" },
-            75: { nom: "Adh-Dhahir", nom_arabe: "الظَّاهِرُ", attribut: "Le Manifeste", emoji: "👁️" },
-            76: { nom: "Al-Batin", nom_arabe: "الْبَاطِنُ", attribut: "Le Caché et Évident", emoji: "🕳️" },
-            77: { nom: "Al-Wali", nom_arabe: "الْوَالِي", attribut: "Le Gouverneur", emoji: "👑" },
-            78: { nom: "Al-Muta'ali", nom_arabe: "الْمُتَعَالِي", attribut: "Le Très Exalté", emoji: "☁️" },
-            79: { nom: "Al-Barr", nom_arabe: "الْبَرُّ", attribut: "La Source de Toute Bonté", emoji: "😊" },
-            80: { nom: "At-Tawwab", nom_arabe: "التَّوَّابُ", attribut: "L'Accepteur de Repentir", emoji: "🔄" },
-            81: { nom: "Al-Muntaqim", nom_arabe: "الْمُنْتَقِمُ", attribut: "Le Vengeur", emoji: "⚔️" },
-            82: { nom: "Al-'Afuw", nom_arabe: "الْعَفُوُّ", attribut: "Le Pardonneur", emoji: "🤝" },
-            83: { nom: "Ar-Ra'uf", nom_arabe: "الرَّءُوفُ", attribut: "Le Compatissant", emoji: "💝" },
-            84: { nom: "Malik-ul-Mulk", nom_arabe: "مَالِكُ الْمُلْكِ", attribut: "Le Propriétaire de toute Souveraineté", emoji: "👑" },
-            85: { nom: "Dhul-Jalali wal-Ikram", nom_arabe: "ذُو الْجَلَالِ وَالْإِكْرَامِ", attribut: "Le Seigneur de Majesté et de Générosité", emoji: "🌟" },
-            86: { nom: "Al-Muqsit", nom_arabe: "الْمُقْسِطُ", attribut: "Le Juste", emoji: "⚖️" },
-            87: { nom: "Aj-Jami'", nom_arabe: "الْجَامِعُ", attribut: "Le Rassembleur", emoji: "🤝" },
-            88: { nom: "Al-Ghani", nom_arabe: "الْغَنِيُّ", attribut: "L'Autosuffisant", emoji: "💰" },
-            89: { nom: "Al-Mughni", nom_arabe: "الْمُغْنِي", attribut: "L'Enrichisseur", emoji: "💎" },
-            90: { nom: "Al-Mani'", nom_arabe: "الْمَانِعُ", attribut: "Le Préventeur", emoji: "🛡️" },
-            91: { nom: "Ad-Darr", nom_arabe: "الضَّارُّ", attribut: "Le Distributeur", emoji: "⚠️" },
-            92: { nom: "An-Nafi'", nom_arabe: "النَّافِعُ", attribut: "Le Bienfaiteur", emoji: "✅" },
-            93: { nom: "An-Nur", nom_arabe: "النُّورُ", attribut: "La Lumière", emoji: "💡" },
-            94: { nom: "Al-Hadi", nom_arabe: "الْهَادِي", attribut: "Le Guide", emoji: "🧭" },
-            95: { nom: "Al-Badi'", nom_arabe: "الْبَدِيعُ", attribut: "L'Incomparable", emoji: "🎨" },
-            96: { nom: "Al-Baqi", nom_arabe: "الْبَاقِي", attribut: "L'Éternel", emoji: "♾️" },
-            97: { nom: "Al-Warith", nom_arabe: "الْوَارِثُ", attribut: "L'Héritier de Tout", emoji: "👑" },
-            98: { nom: "Ar-Rashid", nom_arabe: "الرَّشِيدُ", attribut: "Le Guide du Droit Chemin", emoji: "🧭" },
-            99: { nom: "As-Sabuur", nom_arabe: "الصَّبُورُ", attribut: "Le Patient", emoji: "⏳" }
-        };
+        let nombreActuel = 1;
 
-        function traiterNombres(min, max) {
-            const resultat = [];
-            const symboleImpair = "🤔";
-            const symboleUn = "☝️";
+        const searchInput = document.getElementById('searchInput');
+        const suggestionsList = document.getElementById('suggestions');
 
-            for (let nombre = min; nombre <= max; nombre++) {
-                if (nombre === 1) {
-                    resultat.push({ nombre: nombre, symbole: symboleUn });
-                } 
-                else if (nombre % 2 === 0) {
-                    resultat.push({ nombre: nombre, symbole: nombre });
-                } 
-                else {
-                    resultat.push({ nombre: nombre, symbole: symboleImpair });
-                }
-            }
-
-            return resultat;
+        function getNom(n) {
+            return NOMS_ALLAH[n - 1];
         }
 
-        function rechercherAllah() {
-            const input = document.getElementById('searchInput');
-            const nombre = parseInt(input.value);
-            const errorMessage = document.getElementById('errorMessage');
-            const resultSection = document.getElementById('resultSection');
+        // Normalise le texte pour une recherche tolérante (accents, apostrophes, tirets)
+        function normaliser(texte) {
+            return texte.toLowerCase()
+                .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                .replace(/['’\-\s]/g, '');
+        }
 
-            // Masquer les messages précédents
-            errorMessage.style.display = 'none';
-            resultSection.style.display = 'none';
+        function afficherNom(nombre) {
+            nombreActuel = nombre;
+            const item = getNom(nombre);
 
-            // Validation
-            if (isNaN(nombre) || nombre < 1 || nombre > 99) {
-                errorMessage.style.display = 'block';
+            document.getElementById('resultNumber').textContent = 'N° ' + nombre;
+            document.getElementById('resultNameAr').textContent = item.arabe;
+            document.getElementById('resultName').textContent = item.nom;
+            document.getElementById('resultAttribute').textContent = item.attribut;
+
+            const refEl = document.getElementById('resultRef');
+            refEl.textContent = item.ref || '';
+            refEl.style.display = item.ref ? 'inline-block' : 'none';
+
+            document.getElementById('resultCounter').textContent = nombre + ' / 99';
+            document.getElementById('btnPrev').disabled = (nombre === 1);
+            document.getElementById('btnNext').disabled = (nombre === 99);
+            document.getElementById('actionFeedback').textContent = '';
+
+            // Mettre à jour l'URL pour permettre le partage direct
+            try {
+                history.replaceState(null, '', '?n=' + nombre);
+            } catch (e) {
+                // Indisponible lors d'une ouverture directe du fichier (file://)
+            }
+        }
+
+        function naviguer(direction) {
+            const nouveau = nombreActuel + direction;
+            if (nouveau >= 1 && nouveau <= 99) {
+                afficherNom(nouveau);
+            }
+        }
+
+        function chercherCorrespondances(requete) {
+            const requeteNorm = normaliser(requete);
+            if (!requeteNorm) return [];
+
+            const numero = parseInt(requete, 10);
+            if (!isNaN(numero) && String(numero) === requete.trim()) {
+                return (numero >= 1 && numero <= 99) ? [numero] : [];
+            }
+
+            return NOMS_ALLAH
+                .filter(item => normaliser(item.nom).includes(requeteNorm)
+                             || normaliser(item.attribut).includes(requeteNorm))
+                .map(item => item.n);
+        }
+
+        function afficherSuggestions(correspondances) {
+            suggestionsList.innerHTML = '';
+            if (correspondances.length === 0) {
+                suggestionsList.style.display = 'none';
                 return;
             }
-
-            // Obtenir le symbole selon l'algorithme
-            const nombres = traiterNombres(1, 99);
-            const item = nombres.find(item => item.nombre === nombre);
-            
-            // Obtenir le nom d'Allah (depuis localStorage ou base de données)
-            let nomAllah = localStorage.getItem(`allah_${nombre}`);
-            let nomArabe = ""; // Variable pour le nom en arabe
-            let attribut = "Attribut à définir";
-            let emoji = "📿"; // Emoji par défaut
-            
-            // Si pas dans localStorage, utiliser la base de données
-            if (!nomAllah && nomsAllah[nombre]) {
-                nomAllah = nomsAllah[nombre].nom;
-                nomArabe = nomsAllah[nombre].nom_arabe || "";
-                attribut = nomsAllah[nombre].attribut;
-                emoji = nomsAllah[nombre].emoji;
-            } else if (nomAllah) {
-                attribut = "Attribut personnalisé";
-                // Utiliser l'emoji et le nom arabe de la base de données si disponibles
-                if (nomsAllah[nombre]) {
-                    emoji = nomsAllah[nombre].emoji;
-                    nomArabe = nomsAllah[nombre].nom_arabe || "";
-                }
-            } else {
-                nomAllah = "Nom à définir";
-            }
-
-            // Afficher le résultat
-            document.getElementById('resultNumber').textContent = nombre;
-            document.getElementById('resultSymbol').textContent = item.symbole;
-            document.getElementById('resultName').textContent = nomAllah;
-            document.getElementById('resultNameAr').textContent = nomArabe;
-            document.getElementById('resultAttribute').textContent = attribut;
-            document.getElementById('resultEmoji').textContent = emoji;
-            
-            resultSection.style.display = 'block';
+            correspondances.slice(0, 8).forEach(n => {
+                const item = getNom(n);
+                const li = document.createElement('li');
+                li.innerHTML = '<span class="s-num">' + n + '</span>' +
+                               '<span class="s-nom">' + item.nom + '</span>' +
+                               '<span class="s-attr">' + item.attribut + '</span>';
+                li.addEventListener('mousedown', function(e) {
+                    e.preventDefault();
+                    selectionner(n);
+                });
+                suggestionsList.appendChild(li);
+            });
+            suggestionsList.style.display = 'block';
         }
 
-        // Permettre la recherche avec la touche Entrée
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+        function selectionner(nombre) {
+            afficherNom(nombre);
+            searchInput.value = '';
+            suggestionsList.style.display = 'none';
+        }
+
+        function ecouter() {
+            const feedback = document.getElementById('actionFeedback');
+            if (!('speechSynthesis' in window)) {
+                feedback.textContent = "La lecture audio n'est pas disponible sur ce navigateur.";
+                return;
+            }
+            speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(getNom(nombreActuel).arabe);
+            utterance.lang = 'ar-SA';
+            utterance.rate = 0.8;
+            const voixArabe = speechSynthesis.getVoices().find(v => v.lang.startsWith('ar'));
+            if (voixArabe) {
+                utterance.voice = voixArabe;
+            } else {
+                feedback.textContent = "Aucune voix arabe installée : la prononciation peut être approximative.";
+            }
+            speechSynthesis.speak(utterance);
+        }
+
+        function partager() {
+            const item = getNom(nombreActuel);
+            const feedback = document.getElementById('actionFeedback');
+            const url = window.location.href;
+            const texte = item.nom + (item.attribut ? ' — ' + item.attribut : '') + ' (' + item.arabe + ')';
+
+            if (navigator.share) {
+                navigator.share({ title: 'Asma al Husna', text: texte, url: url }).catch(function() {});
+            } else if (navigator.clipboard) {
+                navigator.clipboard.writeText(texte + '\n' + url).then(function() {
+                    feedback.textContent = 'Lien copié dans le presse-papiers';
+                });
+            } else {
+                feedback.textContent = url;
+            }
+        }
+
+        searchInput.addEventListener('input', function() {
+            afficherSuggestions(chercherCorrespondances(this.value));
+        });
+
+        searchInput.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') {
-                rechercherAllah();
+                const correspondances = chercherCorrespondances(this.value);
+                if (correspondances.length > 0) {
+                    selectionner(correspondances[0]);
+                }
+            } else if (e.key === 'Escape') {
+                suggestionsList.style.display = 'none';
             }
         });
 
-        // Focus automatique sur le champ de recherche
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('searchInput').focus();
+        searchInput.addEventListener('blur', function() {
+            suggestionsList.style.display = 'none';
         });
+
+        document.addEventListener('keydown', function(e) {
+            if (document.activeElement === searchInput) return;
+            if (e.key === 'ArrowLeft') naviguer(-1);
+            if (e.key === 'ArrowRight') naviguer(1);
+        });
+
+        // Au chargement : afficher le nom passé en paramètre d'URL (?n=X) ou le premier
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const n = parseInt(params.get('n'), 10);
+            afficherNom(!isNaN(n) && n >= 1 && n <= 99 ? n : 1);
+            searchInput.focus();
+        });
+
+        // PWA : enregistrement du service worker (nécessite un serveur http/https)
+        if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+            navigator.serviceWorker.register('sw.js').catch(function() {});
+        }
     </script>
 </body>
-</html> 
+</html>
