@@ -1,0 +1,26 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - button "Français" [ref=e4] [cursor=pointer]: FR
+    - button "Türkçe" [ref=e5] [cursor=pointer]: TR
+  - heading "Asma al Husna" [level=1] [ref=e6]
+  - paragraph [ref=e7]: Recherchez l'un des 99 Noms d'Allah par son numéro ou son nom
+  - textbox "Rechercher un nom d'Allah" [active] [ref=e9]:
+    - /placeholder: "Ex. : 2, Rahman, Miséricordieux…"
+  - paragraph [ref=e10]: Tapez pour rechercher, ou parcourez avec les flèches ci-dessous
+  - generic [ref=e11]:
+    - generic [ref=e12]: N° 1
+    - generic [ref=e13]: اللَّهُ
+    - generic [ref=e14]: Allah
+    - generic [ref=e15]: Coran 112:1 (Sourate Al-Ikhlas)
+    - generic [ref=e16]:
+      - button "► Écouter" [ref=e17] [cursor=pointer]
+      - button "Partager" [ref=e18] [cursor=pointer]
+    - generic [ref=e20]:
+      - button "← Précédent" [disabled] [ref=e21]
+      - generic [ref=e22]: 1 / 99
+      - button "Suivant →" [ref=e23] [cursor=pointer]
+  - generic [ref=e24]:
+    - link "Liste complète" [ref=e25] [cursor=pointer]:
+      - /url: nombres_allah.html
+    - link "Mode mémorisation" [ref=e26] [cursor=pointer]:
+      - /url: quiz.html

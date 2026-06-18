@@ -167,19 +167,81 @@
             padding: 30px;
             display: none;
         }
+
+        .lang-switch {
+            display: flex;
+            justify-content: flex-end;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .lang-btn {
+            padding: 5px 12px;
+            border: 1px solid #ced4da;
+            background-color: #f8f9fa;
+            color: var(--secondary-text);
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: var(--latin-font);
+            font-size: 0.8em;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover { border-color: var(--accent-color); }
+
+        .lang-btn.active {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: #fff;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+
+            .container {
+                padding: 24px 18px;
+                border-radius: 16px;
+            }
+
+            h1 { font-size: 1.5em; }
+
+            .toolbar {
+                flex-direction: column;
+                gap: 10px;
+                margin-bottom: 24px;
+            }
+
+            .filter-input {
+                width: 100%;
+                max-width: none;
+                min-width: 0;
+            }
+
+            .nav-btn { width: 100%; text-align: center; }
+
+            .nombres-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 10px;
+            }
+
+            .nombre-item { padding: 14px 8px; }
+            .nom-arabe { font-size: 1.6em; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Asma al Husna</h1>
-        <p class="subtitle">Les 99 Noms d'Allah — cliquez sur un nom pour le voir en détail</p>
+        <div id="langSwitch"></div>
+        <h1 id="appTitle">Asma al Husna</h1>
+        <p class="subtitle" id="subtitle">Les 99 Noms d'Allah — cliquez sur un nom pour le voir en détail</p>
 
         <div class="toolbar">
             <input type="text" id="filterInput" class="filter-input"
                    placeholder="Filtrer par numéro, nom ou attribut…"
                    autocomplete="off" aria-label="Filtrer les noms">
-            <a href="index.html" class="nav-btn">Recherche détaillée</a>
-            <a href="quiz.html" class="nav-btn">Mode mémorisation</a>
+            <a href="index.html" id="navSearch" class="nav-btn">Recherche détaillée</a>
+            <a href="quiz.html" id="navQuiz" class="nav-btn">Mode mémorisation</a>
         </div>
 
         <div class="nombres-grid" id="nombresContainer"></div>
@@ -187,6 +249,7 @@
     </div>
 
     <script src="noms.js"></script>
+    <script src="i18n.js"></script>
     <script>
         // Normalise le texte pour un filtre tolérant (accents, apostrophes, tirets)
         function normaliser(texte) {
@@ -197,17 +260,20 @@
 
         function afficherNombres() {
             const container = document.getElementById('nombresContainer');
+            container.innerHTML = '';
 
             NOMS_ALLAH.forEach(item => {
                 const carte = document.createElement('a');
                 carte.className = 'nombre-item';
                 carte.href = 'index.html?n=' + item.n;
-                carte.dataset.recherche = normaliser(item.n + ' ' + item.nom + ' ' + item.attribut);
+                carte.dataset.recherche = normaliser(
+                    item.n + ' ' + item.nom + ' ' + item.attribut + ' ' + (item.attribut_tr || '')
+                );
                 carte.innerHTML =
-                    '<div class="numero">N° ' + item.n + '</div>' +
+                    '<div class="numero">' + t('numero') + ' ' + item.n + '</div>' +
                     '<div class="nom-arabe" dir="rtl">' + item.arabe + '</div>' +
                     '<div class="nom-translit">' + item.nom + '</div>' +
-                    '<div class="attribut">' + item.attribut + '</div>';
+                    '<div class="attribut">' + attributLocalise(item) + '</div>';
                 container.appendChild(carte);
             });
         }
@@ -226,8 +292,23 @@
             document.getElementById('aucunResultat').style.display = visibles === 0 ? 'block' : 'none';
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
+        function appliquerTraductions() {
+            appliquerLangueDocument('docTitleList');
+            document.getElementById('appTitle').textContent = t('appTitle');
+            document.getElementById('subtitle').textContent = t('listSubtitle');
+            const filtre = document.getElementById('filterInput');
+            filtre.placeholder = t('filterPlaceholder');
+            filtre.setAttribute('aria-label', t('filterAria'));
+            document.getElementById('navSearch').textContent = t('detailedSearch');
+            document.getElementById('navQuiz').textContent = t('memoMode');
+            document.getElementById('aucunResultat').textContent = t('noResult');
             afficherNombres();
+            filtrer();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initSelecteurLangue(document.getElementById('langSwitch'), appliquerTraductions);
+            appliquerTraductions();
             document.getElementById('filterInput').addEventListener('input', filtrer);
         });
 

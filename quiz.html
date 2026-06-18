@@ -209,12 +209,58 @@
             background-color: #e9ecef;
             transform: translateY(-2px);
         }
+
+        .lang-switch {
+            display: flex;
+            justify-content: flex-end;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .lang-btn {
+            padding: 5px 12px;
+            border: 1px solid #ced4da;
+            background-color: #f8f9fa;
+            color: var(--secondary-text);
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: var(--latin-font);
+            font-size: 0.8em;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover { border-color: var(--accent-color); }
+
+        .lang-btn.active {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: #fff;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+
+            .container {
+                padding: 24px 18px;
+                border-radius: 16px;
+            }
+
+            h1 { font-size: 1.5em; }
+            .question-card { padding: 20px 14px; }
+            .question-arabe { font-size: 2.6em; }
+            .question-nom { font-size: 1.15em; }
+            .choix-btn { font-size: 0.95em; padding: 13px 14px; }
+            .resultat-score { font-size: 2.4em; }
+            .navigation .nav-btn { flex: 1; text-align: center; min-width: 130px; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Mode mémorisation</h1>
-        <p class="subtitle">Retrouvez la signification de chaque nom</p>
+        <div id="langSwitch"></div>
+        <h1 id="appTitle">Mode mémorisation</h1>
+        <p class="subtitle" id="subtitle">Retrouvez la signification de chaque nom</p>
 
         <div id="zoneQuiz">
             <div class="progression">
@@ -225,7 +271,7 @@
             <div class="question-card">
                 <div id="questionArabe" class="question-arabe" dir="rtl"></div>
                 <div id="questionNom" class="question-nom"></div>
-                <p class="question-consigne">Quelle est la signification de ce nom ?</p>
+                <p class="question-consigne" id="consigne">Quelle est la signification de ce nom ?</p>
             </div>
 
             <div id="choix" class="choix"></div>
@@ -238,16 +284,17 @@
         <div id="resultatFinal" class="resultat-final">
             <div class="resultat-score" id="scoreFinal"></div>
             <p class="resultat-message" id="messageFinal"></p>
-            <button class="btn-principal" onclick="demarrerQuiz()">Rejouer</button>
+            <button id="btnRejouer" class="btn-principal" onclick="demarrerQuiz()">Rejouer</button>
         </div>
 
         <div class="navigation">
-            <a href="index.html" class="nav-btn">Recherche détaillée</a>
-            <a href="nombres_allah.html" class="nav-btn">Liste complète</a>
+            <a href="index.html" id="navSearch" class="nav-btn">Recherche détaillée</a>
+            <a href="nombres_allah.html" id="navList" class="nav-btn">Liste complète</a>
         </div>
     </div>
 
     <script src="noms.js"></script>
+    <script src="i18n.js"></script>
     <script>
         const NB_QUESTIONS = 10;
         const NB_CHOIX = 4;
@@ -255,6 +302,8 @@
         let questions = [];
         let indexQuestion = 0;
         let bonnesReponses = 0;
+        let optionsActuelles = [];
+        let quizTermine = false;
 
         // Noms ayant un attribut (le n°1 « Allah » est exclu du quiz)
         const nomsJouables = NOMS_ALLAH.filter(item => item.attribut);
@@ -272,16 +321,23 @@
             questions = melanger(nomsJouables).slice(0, NB_QUESTIONS);
             indexQuestion = 0;
             bonnesReponses = 0;
+            quizTermine = false;
             document.getElementById('resultatFinal').style.display = 'none';
             document.getElementById('zoneQuiz').style.display = 'block';
             afficherQuestion();
         }
 
+        function majProgression() {
+            document.getElementById('compteur').textContent =
+                t('question') + ' ' + (indexQuestion + 1) + ' / ' + NB_QUESTIONS;
+            document.getElementById('score').textContent =
+                bonnesReponses + ' ' + t('goodAnswers');
+        }
+
         function afficherQuestion() {
             const question = questions[indexQuestion];
 
-            document.getElementById('compteur').textContent = 'Question ' + (indexQuestion + 1) + ' / ' + NB_QUESTIONS;
-            document.getElementById('score').textContent = bonnesReponses + ' bonne(s) réponse(s)';
+            majProgression();
             document.getElementById('questionArabe').textContent = question.arabe;
             document.getElementById('questionNom').textContent = question.nom;
             document.getElementById('btnSuivant').style.display = 'none';
@@ -290,14 +346,15 @@
             const distracteurs = melanger(nomsJouables.filter(item =>
                 item.n !== question.n && item.attribut !== question.attribut
             )).slice(0, NB_CHOIX - 1);
-            const options = melanger([question].concat(distracteurs));
+            optionsActuelles = melanger([question].concat(distracteurs));
 
             const conteneur = document.getElementById('choix');
             conteneur.innerHTML = '';
-            options.forEach(option => {
+            optionsActuelles.forEach(option => {
                 const btn = document.createElement('button');
                 btn.className = 'choix-btn';
-                btn.textContent = option.attribut;
+                btn.textContent = attributLocalise(option);
+                btn._option = option;
                 btn.addEventListener('click', function() {
                     repondre(btn, option, question);
                 });
@@ -309,7 +366,7 @@
             const boutons = document.querySelectorAll('.choix-btn');
             boutons.forEach(btn => {
                 btn.disabled = true;
-                if (btn.textContent === question.attribut) {
+                if (btn._option && btn._option.n === question.n) {
                     btn.classList.add('correct');
                 }
             });
@@ -320,10 +377,10 @@
                 btnClique.classList.add('incorrect');
             }
 
-            document.getElementById('score').textContent = bonnesReponses + ' bonne(s) réponse(s)';
+            document.getElementById('score').textContent = bonnesReponses + ' ' + t('goodAnswers');
             document.getElementById('btnSuivant').style.display = 'inline-block';
             document.getElementById('btnSuivant').textContent =
-                indexQuestion === NB_QUESTIONS - 1 ? 'Voir le résultat' : 'Question suivante';
+                indexQuestion === NB_QUESTIONS - 1 ? t('seeResult') : t('nextQuestion');
         }
 
         function questionSuivante() {
@@ -335,25 +392,53 @@
             }
         }
 
+        function cleMessageResultat() {
+            if (bonnesReponses === NB_QUESTIONS) return 'msgPerfect';
+            if (bonnesReponses >= NB_QUESTIONS * 0.7) return 'msgGreat';
+            if (bonnesReponses >= NB_QUESTIONS * 0.4) return 'msgGood';
+            return 'msgLow';
+        }
+
         function afficherResultat() {
+            quizTermine = true;
             document.getElementById('zoneQuiz').style.display = 'none';
             document.getElementById('resultatFinal').style.display = 'block';
             document.getElementById('scoreFinal').textContent = bonnesReponses + ' / ' + NB_QUESTIONS;
-
-            let message;
-            if (bonnesReponses === NB_QUESTIONS) {
-                message = 'Excellent ! Vous maîtrisez ces noms parfaitement.';
-            } else if (bonnesReponses >= NB_QUESTIONS * 0.7) {
-                message = 'Très bien ! Encore un peu de révision et ce sera parfait.';
-            } else if (bonnesReponses >= NB_QUESTIONS * 0.4) {
-                message = 'Bon début, continuez à réviser la liste complète.';
-            } else {
-                message = 'Consultez la liste complète pour réviser, puis réessayez.';
-            }
-            document.getElementById('messageFinal').textContent = message;
+            document.getElementById('messageFinal').textContent = t(cleMessageResultat());
         }
 
-        document.addEventListener('DOMContentLoaded', demarrerQuiz);
+        // Met à jour l'interface lors d'un changement de langue, sans perdre la progression.
+        function appliquerTraductions() {
+            appliquerLangueDocument('docTitleQuiz');
+            document.getElementById('appTitle').textContent = t('memoMode');
+            document.getElementById('subtitle').textContent = t('quizSubtitle');
+            document.getElementById('consigne').textContent = t('quizConsigne');
+            document.getElementById('btnRejouer').textContent = t('replay');
+            document.getElementById('navSearch').textContent = t('detailedSearch');
+            document.getElementById('navList').textContent = t('fullList');
+
+            if (quizTermine) {
+                document.getElementById('messageFinal').textContent = t(cleMessageResultat());
+                return;
+            }
+
+            majProgression();
+            document.querySelectorAll('.choix-btn').forEach(btn => {
+                if (btn._option) btn.textContent = attributLocalise(btn._option);
+            });
+            const btnSuivant = document.getElementById('btnSuivant');
+            if (btnSuivant.style.display !== 'none') {
+                btnSuivant.textContent =
+                    indexQuestion === NB_QUESTIONS - 1 ? t('seeResult') : t('nextQuestion');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initSelecteurLangue(document.getElementById('langSwitch'), appliquerTraductions);
+            appliquerLangueDocument('docTitleQuiz');
+            demarrerQuiz();
+            appliquerTraductions();
+        });
 
         // PWA : enregistrement du service worker (nécessite un serveur http/https)
         if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {

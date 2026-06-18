@@ -289,12 +289,71 @@
             background-color: #e9ecef;
             transform: translateY(-2px);
         }
+
+        .lang-switch {
+            display: flex;
+            justify-content: flex-end;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .lang-btn {
+            padding: 5px 12px;
+            border: 1px solid #ced4da;
+            background-color: #f8f9fa;
+            color: var(--secondary-text);
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: var(--latin-font);
+            font-size: 0.8em;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover { border-color: var(--accent-color); }
+
+        .lang-btn.active {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: #fff;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+
+            .container {
+                padding: 24px 18px;
+                border-radius: 16px;
+            }
+
+            h1 { font-size: 1.5em; }
+            .subtitle { margin-bottom: 22px; }
+            .search-input { font-size: 16px; padding: 12px 15px; }
+            .result-section { padding: 24px 16px; }
+            .result-name-ar { font-size: 3em; }
+            .result-name { font-size: 1.35em; }
+            .result-attribute { font-size: 1.05em; }
+
+            .result-nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .result-counter { order: -1; width: 100%; text-align: center; margin-bottom: 6px; }
+            .nav-arrow { flex: 1; min-width: 120px; }
+            .navigation .nav-btn { flex: 1; text-align: center; min-width: 130px; }
+        }
+
+        @media (max-width: 380px) {
+            .result-name-ar { font-size: 2.4em; }
+            .action-btn { flex: 1; min-width: 120px; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Asma al Husna</h1>
-        <p class="subtitle">Recherchez l'un des 99 Noms d'Allah par son numéro ou son nom</p>
+        <div id="langSwitch"></div>
+        <h1 id="appTitle">Asma al Husna</h1>
+        <p class="subtitle" id="subtitle">Recherchez l'un des 99 Noms d'Allah par son numéro ou son nom</p>
 
         <div class="search-section">
             <input type="text" id="searchInput" class="search-input"
@@ -302,7 +361,7 @@
                    autocomplete="off" aria-label="Rechercher un nom d'Allah">
             <ul id="suggestions" class="suggestions"></ul>
         </div>
-        <p class="hint">Tapez pour rechercher, ou parcourez avec les flèches ci-dessous</p>
+        <p class="hint" id="hint">Tapez pour rechercher, ou parcourez avec les flèches ci-dessous</p>
 
         <div id="resultSection" class="result-section">
             <div id="resultNumber" class="result-number"></div>
@@ -311,24 +370,25 @@
             <div id="resultAttribute" class="result-attribute"></div>
             <span id="resultRef" class="result-ref"></span>
             <div class="result-actions">
-                <button class="action-btn" onclick="ecouter()">&#9658; Écouter</button>
-                <button class="action-btn" onclick="partager()">Partager</button>
+                <button id="btnListen" class="action-btn" onclick="ecouter()"></button>
+                <button id="btnShare" class="action-btn" onclick="partager()"></button>
             </div>
             <div id="actionFeedback" class="action-feedback"></div>
             <div class="result-nav">
-                <button id="btnPrev" class="nav-arrow" onclick="naviguer(-1)">&larr; Précédent</button>
+                <button id="btnPrev" class="nav-arrow" onclick="naviguer(-1)"></button>
                 <span id="resultCounter" class="result-counter"></span>
-                <button id="btnNext" class="nav-arrow" onclick="naviguer(1)">Suivant &rarr;</button>
+                <button id="btnNext" class="nav-arrow" onclick="naviguer(1)"></button>
             </div>
         </div>
 
         <div class="navigation">
-            <a href="nombres_allah.html" class="nav-btn">Liste complète</a>
-            <a href="quiz.html" class="nav-btn">Mode mémorisation</a>
+            <a href="nombres_allah.html" id="navList" class="nav-btn">Liste complète</a>
+            <a href="quiz.html" id="navQuiz" class="nav-btn">Mode mémorisation</a>
         </div>
     </div>
 
     <script src="noms.js"></script>
+    <script src="i18n.js"></script>
     <script>
         let nombreActuel = 1;
 
@@ -350,10 +410,10 @@
             nombreActuel = nombre;
             const item = getNom(nombre);
 
-            document.getElementById('resultNumber').textContent = 'N° ' + nombre;
+            document.getElementById('resultNumber').textContent = t('numero') + ' ' + nombre;
             document.getElementById('resultNameAr').textContent = item.arabe;
             document.getElementById('resultName').textContent = item.nom;
-            document.getElementById('resultAttribute').textContent = item.attribut;
+            document.getElementById('resultAttribute').textContent = attributLocalise(item);
 
             const refEl = document.getElementById('resultRef');
             refEl.textContent = item.ref || '';
@@ -390,7 +450,8 @@
 
             return NOMS_ALLAH
                 .filter(item => normaliser(item.nom).includes(requeteNorm)
-                             || normaliser(item.attribut).includes(requeteNorm))
+                             || normaliser(item.attribut).includes(requeteNorm)
+                             || normaliser(item.attribut_tr || '').includes(requeteNorm))
                 .map(item => item.n);
         }
 
@@ -405,7 +466,7 @@
                 const li = document.createElement('li');
                 li.innerHTML = '<span class="s-num">' + n + '</span>' +
                                '<span class="s-nom">' + item.nom + '</span>' +
-                               '<span class="s-attr">' + item.attribut + '</span>';
+                               '<span class="s-attr">' + attributLocalise(item) + '</span>';
                 li.addEventListener('mousedown', function(e) {
                     e.preventDefault();
                     selectionner(n);
@@ -424,7 +485,7 @@
         function ecouter() {
             const feedback = document.getElementById('actionFeedback');
             if (!('speechSynthesis' in window)) {
-                feedback.textContent = "La lecture audio n'est pas disponible sur ce navigateur.";
+                feedback.textContent = t('audioUnavailable');
                 return;
             }
             speechSynthesis.cancel();
@@ -435,7 +496,7 @@
             if (voixArabe) {
                 utterance.voice = voixArabe;
             } else {
-                feedback.textContent = "Aucune voix arabe installée : la prononciation peut être approximative.";
+                feedback.textContent = t('noArabicVoice');
             }
             speechSynthesis.speak(utterance);
         }
@@ -444,13 +505,14 @@
             const item = getNom(nombreActuel);
             const feedback = document.getElementById('actionFeedback');
             const url = window.location.href;
-            const texte = item.nom + (item.attribut ? ' — ' + item.attribut : '') + ' (' + item.arabe + ')';
+            const signification = attributLocalise(item);
+            const texte = item.nom + (signification ? ' — ' + signification : '') + ' (' + item.arabe + ')';
 
             if (navigator.share) {
-                navigator.share({ title: 'Asma al Husna', text: texte, url: url }).catch(function() {});
+                navigator.share({ title: t('appTitle'), text: texte, url: url }).catch(function() {});
             } else if (navigator.clipboard) {
                 navigator.clipboard.writeText(texte + '\n' + url).then(function() {
-                    feedback.textContent = 'Lien copié dans le presse-papiers';
+                    feedback.textContent = t('linkCopied');
                 });
             } else {
                 feedback.textContent = url;
@@ -482,11 +544,32 @@
             if (e.key === 'ArrowRight') naviguer(1);
         });
 
+        function appliquerTraductions() {
+            appliquerLangueDocument('docTitleIndex');
+            document.getElementById('appTitle').textContent = t('appTitle');
+            document.getElementById('subtitle').textContent = t('indexSubtitle');
+            document.getElementById('hint').textContent = t('hint');
+            searchInput.placeholder = t('searchPlaceholder');
+            searchInput.setAttribute('aria-label', t('searchAria'));
+            document.getElementById('btnListen').innerHTML = '&#9658; ' + t('listen');
+            document.getElementById('btnShare').textContent = t('share');
+            document.getElementById('btnPrev').innerHTML = '&larr; ' + t('prev');
+            document.getElementById('btnNext').innerHTML = t('next') + ' &rarr;';
+            document.getElementById('navList').textContent = t('fullList');
+            document.getElementById('navQuiz').textContent = t('memoMode');
+            afficherNom(nombreActuel);
+            if (suggestionsList.style.display === 'block') {
+                afficherSuggestions(chercherCorrespondances(searchInput.value));
+            }
+        }
+
         // Au chargement : afficher le nom passé en paramètre d'URL (?n=X) ou le premier
         document.addEventListener('DOMContentLoaded', function() {
+            initSelecteurLangue(document.getElementById('langSwitch'), appliquerTraductions);
             const params = new URLSearchParams(window.location.search);
             const n = parseInt(params.get('n'), 10);
-            afficherNom(!isNaN(n) && n >= 1 && n <= 99 ? n : 1);
+            nombreActuel = (!isNaN(n) && n >= 1 && n <= 99) ? n : 1;
+            appliquerTraductions();
             searchInput.focus();
         });
 
