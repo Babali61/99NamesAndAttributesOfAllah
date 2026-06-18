@@ -1,5 +1,5 @@
 // Service worker : permet l'utilisation hors ligne de l'application
-const CACHE_NAME = 'asma-al-husna-v3';
+const CACHE_NAME = 'asma-al-husna-v4';
 
 const FICHIERS_APP = [
     './',
@@ -7,6 +7,7 @@ const FICHIERS_APP = [
     'nombres_allah.html',
     'quiz.html',
     'noms.js',
+    'details.js',
     'i18n.js',
     'manifest.json',
     'icon.svg'

@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#121828">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('asma_theme') ||
+                    ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light');
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) {}
+        })();
+    </script>
     <title>Asma al Husna - Mode mémorisation</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="icon.svg" type="image/svg+xml">
@@ -210,14 +219,21 @@
             transform: translateY(-2px);
         }
 
-        .lang-switch {
+        .top-bar {
             display: flex;
-            justify-content: flex-end;
-            gap: 6px;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
             margin-bottom: 12px;
         }
 
-        .lang-btn {
+        .lang-switch {
+            display: flex;
+            gap: 6px;
+        }
+
+        .lang-btn,
+        .theme-toggle {
             padding: 5px 12px;
             border: 1px solid #ced4da;
             background-color: #f8f9fa;
@@ -230,7 +246,8 @@
             transition: all 0.2s ease;
         }
 
-        .lang-btn:hover { border-color: var(--accent-color); }
+        .lang-btn:hover,
+        .theme-toggle:hover { border-color: var(--accent-color); }
 
         .lang-btn.active {
             background-color: var(--accent-color);
@@ -238,12 +255,78 @@
             color: #fff;
         }
 
+        body, .container, .question-card, .choix-btn, .nav-btn {
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0d1117;
+            --container-bg: #161b2c;
+            --primary-text: #ebc777;
+            --secondary-text: #c9a24b;
+            --accent-color: #e5c160;
+            --accent-hover: #f0d27a;
+        }
+
+        [data-theme="dark"] .question-card {
+            background: #1c2336;
+            border-color: #2c3654;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+        }
+
+        [data-theme="dark"] .choix-btn {
+            background-color: #222b45;
+            border-color: #2c3654;
+            color: var(--primary-text);
+        }
+        [data-theme="dark"] .choix-btn:hover:not(:disabled) {
+            border-color: var(--accent-color);
+            background-color: #2a3658;
+        }
+        [data-theme="dark"] .choix-btn.correct {
+            background-color: rgba(39, 174, 96, 0.18);
+            border-color: var(--vert);
+            color: #5fd99a;
+        }
+        [data-theme="dark"] .choix-btn.incorrect {
+            background-color: rgba(231, 76, 60, 0.18);
+            border-color: var(--rouge);
+            color: #f08a7e;
+        }
+
+        [data-theme="dark"] .btn-principal { color: #161b2c; }
+
+        [data-theme="dark"] .nav-btn {
+            background-color: #222b45;
+            color: var(--secondary-text);
+        }
+        [data-theme="dark"] .nav-btn:hover { background-color: #2c3654; }
+
+        [data-theme="dark"] .lang-btn,
+        [data-theme="dark"] .theme-toggle {
+            background-color: #222b45;
+            border-color: #313c5c;
+            color: var(--secondary-text);
+        }
+        [data-theme="dark"] .lang-btn.active {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: #161b2c;
+        }
+
         @media (max-width: 600px) {
-            body { padding: 20px 12px; }
+            body { padding: 0; }
 
             .container {
-                padding: 24px 18px;
-                border-radius: 16px;
+                width: 100%;
+                max-width: none;
+                min-height: 100vh;
+                padding: 28px 18px;
+                border-radius: 0;
+                box-shadow: none;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
             }
 
             h1 { font-size: 1.5em; }
@@ -258,7 +341,10 @@
 </head>
 <body>
     <div class="container">
-        <div id="langSwitch"></div>
+        <div class="top-bar">
+            <button id="themeToggle" class="theme-toggle" type="button"></button>
+            <div id="langSwitch"></div>
+        </div>
         <h1 id="appTitle">Mode mémorisation</h1>
         <p class="subtitle" id="subtitle">Retrouvez la signification de chaque nom</p>
 
@@ -416,6 +502,7 @@
             document.getElementById('btnRejouer').textContent = t('replay');
             document.getElementById('navSearch').textContent = t('detailedSearch');
             document.getElementById('navList').textContent = t('fullList');
+            rafraichirThemeToggle();
 
             if (quizTermine) {
                 document.getElementById('messageFinal').textContent = t(cleMessageResultat());
@@ -434,6 +521,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
+            initThemeToggle(document.getElementById('themeToggle'));
             initSelecteurLangue(document.getElementById('langSwitch'), appliquerTraductions);
             appliquerLangueDocument('docTitleQuiz');
             demarrerQuiz();

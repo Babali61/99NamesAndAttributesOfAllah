@@ -11,6 +11,10 @@ const I18N = {
         detailedSearch: "Recherche détaillée",
         fullList: "Liste complète",
         memoMode: "Mode mémorisation",
+        meaningLabel: "Signification",
+        detailLabel: "Explication",
+        vertuLabel: "Vertus",
+        close: "Fermer",
         // index.html
         docTitleIndex: "Asma al Husna - Recherche des Noms d'Allah",
         indexSubtitle: "Recherchez l'un des 99 Noms d'Allah par son numéro ou son nom",
@@ -21,6 +25,8 @@ const I18N = {
         share: "Partager",
         prev: "Précédent",
         next: "Suivant",
+        themeDark: "Sombre",
+        themeLight: "Clair",
         audioUnavailable: "La lecture audio n'est pas disponible sur ce navigateur.",
         noArabicVoice: "Aucune voix arabe installée : la prononciation peut être approximative.",
         linkCopied: "Lien copié dans le presse-papiers",
@@ -52,6 +58,10 @@ const I18N = {
         detailedSearch: "Ayrıntılı arama",
         fullList: "Tam liste",
         memoMode: "Ezber modu",
+        meaningLabel: "Anlamı",
+        detailLabel: "Açıklama",
+        vertuLabel: "Faziletleri",
+        close: "Kapat",
         // index.html
         docTitleIndex: "Esmâ-ül Hüsnâ - Allah'ın İsimleri Araması",
         indexSubtitle: "Allah'ın 99 isminden birini numarasıyla veya adıyla arayın",
@@ -62,6 +72,8 @@ const I18N = {
         share: "Paylaş",
         prev: "Önceki",
         next: "Sonraki",
+        themeDark: "Koyu",
+        themeLight: "Açık",
         audioUnavailable: "Sesli okuma bu tarayıcıda kullanılamıyor.",
         noArabicVoice: "Yüklü Arapça ses yok: telaffuz yaklaşık olabilir.",
         linkCopied: "Bağlantı panoya kopyalandı",
@@ -157,4 +169,60 @@ function appliquerLangueDocument(docTitleKey) {
     if (docTitleKey) {
         document.title = t(docTitleKey);
     }
+}
+
+/* ----- Thème clair / sombre ----- */
+const THEME_STORAGE_KEY = "asma_theme";
+let _themeBtn = null;
+
+function getTheme() {
+    let theme;
+    try {
+        theme = localStorage.getItem(THEME_STORAGE_KEY);
+    } catch (e) {
+        theme = null;
+    }
+    if (!theme) {
+        theme = (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)
+            ? "dark" : "light";
+    }
+    return theme === "dark" ? "dark" : "light";
+}
+
+function setTheme(theme) {
+    const valeur = theme === "dark" ? "dark" : "light";
+    try {
+        localStorage.setItem(THEME_STORAGE_KEY, valeur);
+    } catch (e) {
+        // Indisponible (ex. ouverture en file://) : on continue sans persistance.
+    }
+    document.documentElement.setAttribute("data-theme", valeur);
+}
+
+function appliquerTheme() {
+    document.documentElement.setAttribute("data-theme", getTheme());
+}
+
+// Libellé de l'action proposée par le bouton (en mode clair il propose le sombre).
+function libelleTheme() {
+    return getTheme() === "dark" ? t("themeLight") : t("themeDark");
+}
+
+// À rappeler après un changement de langue pour traduire le bouton.
+function rafraichirThemeToggle() {
+    if (!_themeBtn) return;
+    _themeBtn.textContent = libelleTheme();
+    _themeBtn.setAttribute("aria-label", libelleTheme());
+}
+
+function initThemeToggle(btn, onChange) {
+    _themeBtn = btn;
+    if (!btn) return;
+    appliquerTheme();
+    rafraichirThemeToggle();
+    btn.addEventListener("click", function () {
+        setTheme(getTheme() === "dark" ? "light" : "dark");
+        rafraichirThemeToggle();
+        if (typeof onChange === "function") onChange();
+    });
 }
